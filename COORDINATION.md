@@ -4,7 +4,7 @@ Session ID: `arena/e34b50a1-vegas3` (current branch fixed by Arena)
 
 | Task | Status | Owner | Files |
 |---|---|---|---|
-| Build trip-planning dashboard, transparent sourcing and review flags | in progress | arena/e34b50a1-vegas3 | COORDINATION.md, index.html, styles.css, app.js, README.md |
+| Build trip-planning dashboard, transparent sourcing and review flags | done | arena/e34b50a1-vegas3 | COORDINATION.md, index.html, styles.css, app.js, README.md |
 
 ## Sources and verification log
 
@@ -13,3 +13,7 @@ Session ID: `arena/e34b50a1-vegas3` (current branch fixed by Arena)
 - Hotel rates/availability for 2027, transport itineraries/hours, full restaurant hours and social accounts were not independently confirmed from official sources in this session; left blank and flagged rather than inferred.
 
 Verification: repository initially contained only README.md; static build has no dependencies. Check HTML/CSS/JS manually and ensure source links are explicit. No other sessions or claims are visible in the repo. Irregularity: user asks both a preferred 3-night Feb 15–18 window and a 7-night price comparison; these are distinct trip lengths and need to be resolved. Las Vegas directory listings should not be presented as universally Michelin-starred.
+
+## Completion
+
+PR #2: https://github.com/kanlerxz87-cyber/Vegas3/pull/2 — merged with a merge commit. GitHub reported no checks for the PR at review time. Pages deployment was not verifiable from this session; confirm the repository Pages settings/deployment before treating the site as publicly live.
