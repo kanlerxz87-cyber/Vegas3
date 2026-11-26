@@ -11,7 +11,7 @@ Format per task:
 | T1 | Create COORDINATION.md shared task board | done | arena/faf21ab2-vegas3 | COORDINATION.md | — |
 | T2 | Research: Michelin Guide coverage for Las Vegas (official Michelin/LVCVA sources) | done | arena/faf21ab2-vegas3 | research/michelin.md | visitlasvegas.com/michelin-guide-restaurants/ (official LVCVA); mgmgrand, caesars, cosmopolitan official restaurant pages |
 | T3 | Research: Las Vegas hotels (private bath, queen bed+, 2 adults), 7-night pricing Feb 15-22 2027, cheapest booking window | in progress | arena/faf21ab2-vegas3 | research/hotels.md | official hotel sites; rtcsnv.com for transit |
-| T4 | Research: activities within 1 hr travel of hotels; restaurants hours/social links | in progress | arena/faf21ab2-vegas3 | research/activities.md | official venue sites |
+| T4 | Research: activities within 1 hr travel of hotels; restaurants hours/social links | in progress | arena/faf21ab2-vegas3 | research/restaurants.md, research/activities.md | official venue sites; exact transit times left blank when RTC route result is unavailable |
 | T5 | Site: landing page + navigation structure (mobile-friendly dashboard) | in progress | arena/faf21ab2-vegas3 | index.html, assets/ | — |
 | T6 | Site: data pages (hotels, restaurants, activities) as tables with sources | in progress | arena/faf21ab2-vegas3 | hotels.html, restaurants.html, activities.html | per-row official sources; values marked unverified when unsupported |
 | T7 | Site: executive summary, suggestions, Q&A/missing info, Flagged for Review page | in progress | arena/faf21ab2-vegas3 | summary.html, suggestions.html, questions.html, flagged.html | — |
