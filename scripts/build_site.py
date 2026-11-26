@@ -9,6 +9,7 @@ No external dependencies (Python 3 standard library only).
 import html
 import json
 import pathlib
+import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
@@ -35,6 +36,16 @@ def src_links(ids):
         else:
             parts.append(f'<span class="bad">{e(sid)} (missing)</span>')
     return " · ".join(parts)
+
+
+def src_field(value):
+    """Render a 'source' field that may hold one ID or several IDs separated by '·' or ','.
+    Plain-text sources (for example 'User brief') are shown as text."""
+    text = str(value or "")
+    ids = [s.strip() for s in re.split(r"[·,]", text) if s.strip()]
+    if ids and all(re.fullmatch(r"S\d+", s) for s in ids):
+        return src_links(ids)
+    return e(text) if text else '<span class="muted">none</span>'
 
 
 def flags_html(flags):
@@ -164,7 +175,7 @@ def build_home():
 def build_trip_dates():
     d = DATA["dates"]
     facts = [
-        [e(f["item"]), e(f["value"]), src_links([f["source"]]) if f["source"].startswith("S") else e(f["source"]), badge(f["status"])]
+        [e(f["item"]), e(f["value"]), src_field(f["source"]), badge(f["status"])]
         for f in d["facts"]
     ]
     win = [
@@ -336,7 +347,7 @@ def build_suggestions():
 
 def build_repo_review():
     rows = "".join(
-        f"<tr><td>{e(x['item'])}</td><td>{e(x['observation'])}</td><td>{src_links([x['source']]) if x['source'].startswith('S') else e(x['source'])}</td><td>{e(x['action'])}</td></tr>"
+        f"<tr><td>{e(x['item'])}</td><td>{e(x['observation'])}</td><td>{src_field(x['source'])}</td><td>{e(x['action'])}</td></tr>"
         for x in DATA["repo_review"]
     )
     body = f"""
@@ -351,7 +362,7 @@ def build_repo_review():
 
 def build_flagged():
     rows = "".join(
-        f"<tr><td>{e(x['item'])}</td><td>{e(x['issue'])}</td><td>{src_links([x['source']]) if x['source'].startswith('S') else e(x['source'])}</td></tr>"
+        f"<tr><td>{e(x['item'])}</td><td>{e(x['issue'])}</td><td>{src_field(x['source'])}</td></tr>"
         for x in DATA["flagged"]
     )
     body = f"""
