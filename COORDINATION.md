@@ -85,3 +85,23 @@ Full list with types on the site's Sources page: `pages/sources.html`.
 - Pages deploy: GitHub Actions "Deploy static site to GitHub Pages" run 45902257572 completed success; Pages build status "built" for 6c9fb00. Live check: https://kanlerxz87-cyber.github.io/Vegas3/pages/index.html and /pages/hotels.html returned the new content.
 - Verification before merge: `python3 scripts/verify_site.py` → VERIFY OK (11 pages, 36 table rows, 21 sources; restaurant tiers 4/3/17).
 - Flagged items and unverified values are published on https://kanlerxz87-cyber.github.io/Vegas3/pages/flagged.html and did not block the merge.
+
+---
+
+## Session arena-7dd5ad60: integration record (2026-11-26)
+
+**Task status.** Repo review and Michelin, hotel, activity, date, Q&A and flagged data were built in this session on `arena/7dd5ad60-vegas3`. Two other sessions also built a planner on `main` (arena-84047ba4 and arena-b9d64425). To avoid two competing sites, this session adopted the `main` site (`data/site.json` + `pages/`) as the single source of truth and ported in the verified facts it lacked. Its duplicate `docs/` tree and `data/*.json` files were not kept.
+
+**What was ported into `data/site.json`** (all with source IDs from its `sources` list; 36 sources total now):
+- Restaurant hours or addresses where the official page states them: Kabuto (daily 5:30–9:00 PM, reservation only), SoulBelly BBQ (Tue–Thu 11–9, Fri–Sat 11–10, Sun 11–9; Monday not listed), L'Atelier day-pattern check, É booking window (3 months ahead), Sparrow + Wolf card hold and $25/guest cancellation rule, Partage dietary limits and 12-seat room.
+- Activities: Valley of Fire State Park (sunrise–sunset; $10 NV / $15 non-NV vehicle; Dec 1–14 closure) and Lake Mead NRA (pass prices); Red Rock Scenic Drive and Visitor Center hours (BLM).
+- Dates: Feb 15–18 2027 restaurant open/closed days (Monday check-in: Joël Robuchon and é closed; L'Atelier open); booking timing (CVA: starred tables released 30–60 days ahead).
+- Flagged: Bib Gourmand conflict (Las Vegas Magazine vs CVA/Wikipedia/Travel Weekly), Mott 32 property conflict, SoulBelly Monday hours, transit sources secondary only, Valley of Fire/Lake Mead drive times, and the root dashboard's Michelin citations (not re-opened in this sandbox).
+
+**Verification.** `python3 scripts/build_site.py` then `python3 scripts/verify_site.py` both pass on the merged tree (11 pages, 38 table rows, 36 sources, 4 starred / 3 Bib / 17 Recommended).
+
+**Irregularity found: Pages deploy workflow failed.** The `Deploy static site to GitHub Pages` run for PR #3 (run 45901647929) failed at `deploy-pages`. Pages is configured as a legacy build from `main` `/`, and `deploy-pages` needs the GitHub Actions build type. The legacy build succeeded (run 45901647540), so the site stayed live. Fix applied: `.github/workflows/pages.yml` now validates instead of deploying (rebuild, verify, and fail if committed `pages/` or `assets/` is stale). Pages still deploys through the legacy `main` `/` build.
+
+**Overlap.** T7 (integration) is also listed as in progress for arena-b9d64425 above, and that session merged PR #6 to `main`. This session re-merged `main` and kept its files intact; the merge is recorded in the PR body on PR #4.
+
+**Sources and manual-review links.** Michelin: https://www.visitlasvegas.com/michelin-guide-restaurants/ (CVA) for the 24-distinction list; official restaurant and resort pages for hours and addresses (see the Sources table on the site).
