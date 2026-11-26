@@ -9,12 +9,12 @@ Format per task:
 | Task ID | Description | Status | Owner | Files touched | Sources / verification |
 |---------|-------------|--------|-------|---------------|------------------------|
 | T1 | Create COORDINATION.md shared task board | done | arena/faf21ab2-vegas3 | COORDINATION.md | — |
-| T2 | Research: Michelin Guide coverage for Las Vegas (official Michelin sources) | unclaimed | — | research/michelin.md | michelin.com official site |
-| T3 | Research: Las Vegas hotels (private bath, queen bed+, 2 adults), 7-night pricing, cheapest booking window | unclaimed | — | research/hotels.md | official hotel sites |
-| T4 | Research: activities within 1 hr travel of hotels; restaurants; social links; hours | unclaimed | — | research/activities.md | official venue sites |
-| T5 | Site: landing page + navigation structure (mobile-friendly dashboard) | unclaimed | — | index.html, assets/ | — |
-| T6 | Site: data pages (hotels, restaurants, activities) as tables with sources | unclaimed | — | hotels.html, restaurants.html, activities.html | per-row official sources |
-| T7 | Site: executive summary, suggestions, Q&A/missing info, Flagged for Review page | unclaimed | — | summary.html, suggestions.html, questions.html, flagged.html | — |
+| T2 | Research: Michelin Guide coverage for Las Vegas (official Michelin/LVCVA sources) | done | arena/faf21ab2-vegas3 | research/michelin.md | visitlasvegas.com/michelin-guide-restaurants/ (official LVCVA); mgmgrand, caesars, cosmopolitan official restaurant pages |
+| T3 | Research: Las Vegas hotels (private bath, queen bed+, 2 adults), 7-night pricing Feb 15-22 2027, cheapest booking window | in progress | arena/faf21ab2-vegas3 | research/hotels.md | official hotel sites; rtcsnv.com for transit |
+| T4 | Research: activities within 1 hr travel of hotels; restaurants hours/social links | in progress | arena/faf21ab2-vegas3 | research/activities.md | official venue sites |
+| T5 | Site: landing page + navigation structure (mobile-friendly dashboard) | in progress | arena/faf21ab2-vegas3 | index.html, assets/ | — |
+| T6 | Site: data pages (hotels, restaurants, activities) as tables with sources | in progress | arena/faf21ab2-vegas3 | hotels.html, restaurants.html, activities.html | per-row official sources; values marked unverified when unsupported |
+| T7 | Site: executive summary, suggestions, Q&A/missing info, Flagged for Review page | in progress | arena/faf21ab2-vegas3 | summary.html, suggestions.html, questions.html, flagged.html | — |
 | T8 | Integration: verify all rows line-by-line against official sources, build check, enable GitHub Pages, PR + merge | unclaimed | — | all | per-row sources linked |
 
 Rules:
