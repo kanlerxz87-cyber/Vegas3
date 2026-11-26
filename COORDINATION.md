@@ -2,18 +2,89 @@
 
 | Task | Status | Owner session | File scope |
 |---|---|---|---|
-| Site, research, and integration | in progress | arena-84047ba4 | `index.html`, `styles.css`, `app.js`, `data/`, `.github/workflows/pages.yml`, `README.md`, `COORDINATION.md` |
+| Trip-planning dashboard, research, and integration | done | arena-84047ba4 | `index.html`, `styles.css`, `app.js`, `README.md`, `.github/workflows/pages.yml`, `COORDINATION.md` |
 
-## Work log
+## Work log — arena-84047ba4
 
-### Site, research, and integration — arena-84047ba4
-- Sources to verify: official Michelin Guide listings; official hotel, restaurant, transit, attraction and social-media pages where available.
-- Verification plan: preserve links to primary sources; identify unconfirmed prices, dates, operations and transit times as unverified rather than estimating them.
-- Irregularities: repository initially contains only a one-line README and has no existing site, source data, or coordination board. No other session claims were present at start.
-- Sources checked (official): MICHELIN Guide Las Vegas selection (https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurants), Restaurant de Joël Robuchon (https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/restaurant-de-joel-robuchon), L'Atelier de Joël Robuchon (https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/l-atelier-de-joel-robuchon-las-vegas), Restaurant Guy Savoy (https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/guy-savoy-las-vegas), MGM Grand (https://mgmgrand.mgmresorts.com/en.html), Caesars Palace (https://www.caesars.com/caesars-palace), Bellagio (https://bellagio.mgmresorts.com/en.html), The Cosmopolitan (https://www.cosmopolitanlasvegas.com/), Wynn (https://www.wynnlasvegas.com/), RTC transit services and trip planner (https://www.rtcsnv.com/ways-to-travel/transit-services/ and https://www.rtcsnv.com/ways-to-travel/trip-planner/).
-- Verification performed: checked Michelin's official 2026 Las Vegas selection and individual star-status pages; site anchor targets validated with Python HTMLParser; JavaScript syntax checked with `node --check`; no claims of exact hotel/restaurant prices, route times, hours, or 2027 operations were invented. The visible restaurant table is an explicitly labeled starred subset, not the complete 24-selection list.
-- Irregularities: user requested live verified future prices and best booking date, but no booking inventory/query data source is available in repository; these values remain explicitly unverified. A 3-night preferred window conflicts with requested 7-night totals. No TikTok/Instagram/YouTube profiles are linked because handles were not confirmed from official pages. A ≤1h travel ranking cannot be validated absent selected dates, exact route schedule and start point.
-- Publication: site and Pages workflow prepared; must merge via current branch PR and verify Actions/Pages deployment after merge. No PR has been opened or merged yet.
+- Repository reviewed; it initially contained only README. A concurrently active session had created a dashboard on main while this session built a separate alternative; overlap was resolved by preserving the main-branch dashboard rather than overwriting another session's work. This branch added the GitHub Pages workflow and source/verification records.
+- Official sources reviewed: MICHELIN Guide Las Vegas directory https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurants; Restaurant de Joël Robuchon https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/restaurant-de-joel-robuchon; L'Atelier de Joël Robuchon https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/l-atelier-de-joel-robuchon-las-vegas; Restaurant Guy Savoy https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/guy-savoy-las-vegas; official hotel sites (MGM Grand, Caesars Palace, Bellagio, Cosmopolitan, Wynn) and RTC transit planner.
+- Verification: individual Michelin award pages checked; JavaScript syntax and anchor targets checked on the dashboard draft. The deployed main dashboard remains the other session's implementation and is authoritative after preserving the overlap. The site displays unverified future hotel prices, transit, hours and restaurant cost as unknown rather than fabricated.
+- Irregularities: user's preferred Feb 15–18 trip is 3 nights, conflicting with requested 7-night totals. Live 2027 rates and an evidence-based cheapest booking date were not available. No handles were verified for social links. Transit under one hour cannot be confirmed without actual route/time and selected hotel. Guide has more entries than the verified starred subset.
+- PR #1: https://github.com/kanlerxz87-cyber/Vegas3/pull/1 — merged 2026-11-26 (merge commit `bc5782a7d3405eb917f362504f366955193e28d6`). GitHub Actions static deployment run 45901530495 succeeded; GitHub Pages build/deploy run 45901530986 succeeded.
+
+---
+
+# Session arena-b9d64425 (branch `arena/b9d64425-vegas3`)
+
+Added 2026-11-26. This session worked on its own branch and integrated with the existing dashboard on `main` without overwriting it. The branch-naming difference is logged below.
+
+## Task board (this session)
+
+| Task | Status | Owner session | File scope | Notes |
+|---|---|---|---|---|
+| Coordination board entry | done | arena-b9d64425 | `COORDINATION.md` | Appended only; earlier rows untouched. |
+| T1 Repo review, line by line | done | arena-b9d64425 | `data/site.json` (repo_review), `pages/repo-review.html` | Irregularities listed on Repo review page. |
+| T2 Hotels (room types, beds, bathroom, Michelin count, booking timing) | done, partial data | arena-b9d64425 | `data/site.json` (hotels, dates), `pages/hotels.html`, `pages/trip-dates.html` | 4 hotels with official room data; 3 not fetchable. 7-night totals NOT verified. |
+| T3 Michelin dining (2026 LV list, hours, price symbols) | done, partial data | arena-b9d64425 | `data/site.json` (restaurants), `pages/restaurants.html` | 24 distinctions verified against LVCVA; hours for 5; cost and social not verified. |
+| T4 Activities | done, partial data | arena-b9d64425 | `data/site.json` (activities), `pages/activities.html` | Red Rock and Hoover Dam partly verified. |
+| T5 Subpage site generator | done | arena-b9d64425 | `scripts/build_site.py`, `assets/style.css`, `pages/*` | Generated from `data/site.json`. |
+| T6 Verification script | done | arena-b9d64425 | `scripts/verify_site.py` | Last run: VERIFY OK. |
+| T7 Integration (link from dashboard to subpages, PR, merge, Pages check) | done | arena-b9d64425 | `index.html` (one link added), `README.md` (section appended) | See PR record below. |
+
+## Integration notes
+
+- Root `index.html`, `styles.css`, `app.js`, `.github/workflows/pages.yml` from arena-84047ba4 kept unchanged except for one added link in the page header pointing to `pages/index.html`.
+- `README.md`: their content kept in full; a planner section appended.
+- Both sessions' Michelin pages: the individual guide.michelin.com pages cited in the other session's dashboard were NOT reachable from this sandbox (fetch failed), so they are not re-verified here. Logged as IRR-M1.
+- Branch-naming: brief asks for `session-<id>/<task>`; this session is fixed to `arena/b9d64425-vegas3`. Logged as REPO-05.
+
+## Sources used by this session (accessed 2026-11-26)
+
+- LVCVA Michelin page (S1): https://www.visitlasvegas.com/michelin-guide-restaurants/
+- MGM Grand, Joël Robuchon (S2): https://mgmgrand.mgmresorts.com/en/restaurants/joel-robuchon-french-restaurant.html
+- MGM Grand, L'Atelier (S3): https://mgmgrand.mgmresorts.com/en/restaurants/latelier-joel-robuchon-french-restaurant.html
+- Cosmopolitan, é by José Andrés (S4): https://cosmopolitanlasvegas.mgmresorts.com/en/restaurants/e-by-jose-andres.html
+- Caesars Palace, Restaurant Guy Savoy (S5): https://www.caesars.com/caesars-palace/restaurants/restaurant-guy-savoy
+- Cosmopolitan, China Poblano (S6): https://cosmopolitanlasvegas.mgmresorts.com/en/restaurants/china-poblano.html
+- Esther's Kitchen (S7): https://www.estherslv.com/ · Yen Viet Kitchen (S8): https://www.yenvietkitchen.com/
+- Venetian, COTE (S9): https://www.venetianlasvegas.com/dining/restaurants/cote.html
+- Cosmopolitan rooms (S10): https://cosmopolitanlasvegas.mgmresorts.com/en/hotel.html
+- ARIA rooms (S11): https://aria.mgmresorts.com/en/hotel.html
+- Venetian hotel (S12): https://www.venetianlasvegas.com/hotel.html
+- Caesars Palace hotel (S13): https://www.caesars.com/caesars-palace/hotel
+- OPM 2027 federal holidays (S14): https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
+- RTC of Southern Nevada (S15): https://www.rtcsnv.com/
+- BLM Red Rock Canyon NCA (S16): https://www.blm.gov/visit/red-rock-canyon-national-conservation-area
+- Bureau of Reclamation, Hoover Dam (S17): https://www.usbr.gov/lc/hooverdam/
+- Venetian, Mott 32 (S18): https://www.venetianlasvegas.com/dining/restaurants/mott-32.html
+- GitHub API Pages config (S19): https://api.github.com/repos/kanlerxz87-cyber/Vegas3/pages
+- MICHELIN Guide directory (S21): https://guide.michelin.com/us/en/restaurants (reachable; individual LV listings not verified)
+
+Full list with types on the site's Sources page: `pages/sources.html`.
+
+## Irregularities (this session)
+
+- IRR-01 7-night totals NOT verified for any hotel.
+- IRR-02 Private bathroom not stated on fetched room pages (Cosmopolitan, ARIA, Caesars).
+- IRR-03 MGM Grand, Bellagio, Wynn room pages not fetchable in this run.
+- IRR-04 Bus/subway ≤ 1 hr not calculated; Red Rock has no public transit (BLM).
+- IRR-05 Restaurant hours unverified for 19 of 24 venues; Guy Savoy partial.
+- IRR-06 Restaurant cost for 2 adults NOT verified (Michelin $ symbols only).
+- IRR-07 No social-media links verified.
+- IRR-08 COTE's own page claims "first-ever Michelin-starred Korean BBQ restaurant"; LVCVA lists COTE Las Vegas as Recommended only.
+- IRR-09 Trip-length conflict: 3 nights vs 1–2 weeks and 7-night totals.
+- IRR-10 Hoover Dam tour page snapshot: tickets "not currently available".
+- IRR-11 RTC alert: F1 construction changing bus service around the Strip.
+- IRR-M1 Michelin individual guide pages (guide.michelin.com/…/las-vegas_2935077/…) cited by the dashboard not reachable from this sandbox.
+- REPO-05 Branch naming differs from the brief (see above).
+
+## PR and publish record
+
+- PR: https://github.com/kanlerxz87-cyber/Vegas3/pull/6 — "Las Vegas planner subpages, verification and integration" (arena/b9d64425-vegas3 → main)
+- Merge result: MERGED via `gh pr merge 6 --merge`; merge commit 6c9fb007127fd633b29587fbe072e6f96cc237cf (2026-11-26 22:03 UTC)
+- Pages deploy: GitHub Actions "Deploy static site to GitHub Pages" run 45902257572 completed success; Pages build status "built" for 6c9fb00. Live check: https://kanlerxz87-cyber.github.io/Vegas3/pages/index.html and /pages/hotels.html returned the new content.
+- Verification before merge: `python3 scripts/verify_site.py` → VERIFY OK (11 pages, 36 table rows, 21 sources; restaurant tiers 4/3/17).
+- Flagged items and unverified values are published on https://kanlerxz87-cyber.github.io/Vegas3/pages/flagged.html and did not block the merge.
 
 ---
 
@@ -23,11 +94,11 @@
 
 | Task | Status | Owner session | File scope | Claimed (UTC) |
 |---|---|---|---|---|
-| R0 — Repo review, line-by-line (repo state, irregularities, links to official sources) | in progress | arena-b1816fc8 | `research/repo-review.json` | 2026-11-26 21:58 |
-| R1 — Hotel research (8 Strip/Downtown hotels: official room, bathroom, Michelin proximity, booking-window facts) | in progress | arena-b1816fc8 | `research/data/hotels.json` | 2026-11-26 21:58 |
-| R2 — Michelin restaurants (all 24 LVCVA-listed Las Vegas distinctions; star/Bib/Recommended status; hours & social where officially verifiable) | in progress | arena-b1816fc8 | `research/data/restaurants.json` | 2026-11-26 21:58 |
-| R3 — Activities & transport (official park/attraction/RTC sources; hours; no-subway check) | in progress | arena-b1816fc8 | `research/data/activities.json`, `research/data/transport.json` | 2026-11-26 21:58 |
-| R4 — Research sub-site at `/research/` (category pages, questions, suggestions, Flagged for Review, generator) | in progress | arena-b1816fc8 | `research/**` (generator `research/build.py`) | 2026-11-26 21:58 |
+| R0 — Repo review, line-by-line (repo state, irregularities, links to official sources) | done (audit §3) | arena-b1816fc8 | `research/AUDIT.md` (§3, §4) | 2026-11-26 21:58 |
+| R1 — Hotel research (8 Strip/Downtown hotels: official room, bathroom, Michelin proximity, booking-window facts) | done, partial data (7-night totals and bathroom unverified) | arena-b1816fc8 | `research/data/hotels.json` | 2026-11-26 21:58 |
+| R2 — Michelin restaurants (all 24 LVCVA-listed Las Vegas distinctions; star/Bib/Recommended status; hours & social where officially verifiable) | done, partial data (Michelin primary not fetchable; cost and social not verified) | arena-b1816fc8 | `research/data/restaurants.json` | 2026-11-26 21:58 |
+| R3 — Activities & transport (official park/attraction/RTC sources; hours; no-subway check) | done, partial data (no verified travel times) | arena-b1816fc8 | `research/data/activities.json`, `research/data/transport.json` | 2026-11-26 21:58 |
+| R4 — Research sub-site at `/research/` | dropped (superseded: `pages/` from arena-b9d64425 covers the same categories and is live on `main`). Not built, to avoid a duplicate site. | arena-b1816fc8 | none | 2026-11-26 21:58 |
 | I1 — Integration of `research/` into root navigation, combined re-verification, PR, merge, Pages check | unclaimed | — | root `index.html` nav only | — |
 
 ### Requests for the owner of the root site (arena-84047ba4) — logged, not edited by this session
@@ -40,3 +111,13 @@
 
 - 2026-11-26 21:57 UTC — Found `main` already has the root site from arena-84047ba4 (claim at 21:54 UTC, active). Did not take over its work (claim is < 60 min old with commits).
 - 2026-11-26 21:58 UTC — Merged `origin/main` into `arena/b1816fc8-vegas3`; resolved the `COORDINATION.md` add/add conflict by keeping arena-84047ba4's board verbatim and appending this section. No other content was discarded.
+### Status update — arena-b1816fc8 (2026-11-26, after `main` @ 4109e49)
+
+- Pulled `origin/main` (PRs #6 and #7 merged). `pages/` is live from arena-b9d64425, so R4 was dropped to avoid a duplicate site.
+- Wrote raw verified captures to `research/data/` (hotels, restaurants, activities, transport, dates, sources, questions, suggestions). Each row carries its source URL. Anything not on a fetched page is blank and flagged. An earlier draft had unsupported URLs, addresses and promo claims; those were removed in this pass.
+- Independent audit: `research/AUDIT.md`. It lists confirmed matches, gaps, and 5 inaccurate or incomplete items (A-01 to A-05) for the owner and integration session. A-03 is a live Pages irregularity: two deployments publish the repo root.
+- Newly verified official data: COTE hours and $$$ (venetianlasvegas.com), Wing Lei hours and dress code (wynnlasvegas.com), Wynn Tower Two Queen room page (fetchable; owner's "unavailable" note is stale), Caesars Advanced Purchase Savings (caesars.com/caesars-palace/hotel/rooms).
+- Not claimed: I1 (integration). Merging `research/` into `main` would publish unreviewed drafts through the repo-root Pages build, so integration is left for an integration session. Owner `arena-84047ba4` to review A-01 to A-05.
+- Not verified and left blank: hotel 7-night totals for Feb 15–22, 2027; bathroom for most hotels; Resorts World rooms; Michelin primary; per-person restaurant cost; venue social links; travel times.
+- PR: none opened from this session. Merge: not performed.
+
