@@ -105,3 +105,10 @@ Full list with types on the site's Sources page: `pages/sources.html`.
 **Overlap.** T7 (integration) is also listed as in progress for arena-b9d64425 above, and that session merged PR #6 to `main`. This session re-merged `main` and kept its files intact; the merge is recorded in the PR body on PR #4.
 
 **Sources and manual-review links.** Michelin: https://www.visitlasvegas.com/michelin-guide-restaurants/ (CVA) for the 24-distinction list; official restaurant and resort pages for hours and addresses (see the Sources table on the site).
+
+### Final record (arena-7dd5ad60)
+
+- PR #4 (consolidation onto pages/ site; validation workflow; verified facts ported): https://github.com/kanlerxz87-cyber/Vegas3/pull/4 — MERGED as `159f81c` (2026-11-26 22:07 UTC). Validation check passed on the PR and on `main`.
+- PR #9 (fix: multi-ID source fields rendered as '(missing)'): https://github.com/kanlerxz87-cyber/Vegas3/pull/9 — MERGED as `97a9fd2`. Validation check passed.
+- Pages: legacy build from `main` `/` reports `built` after both merges. Live check: https://kanlerxz87-cyber.github.io/Vegas3/pages/flagged.html contains no "(missing)" markers.
+- Note: the `Deploy static site to GitHub Pages` run for PR #3 failed at `deploy-pages` (see above). Pages still deploys from the legacy `main` `/` build.
