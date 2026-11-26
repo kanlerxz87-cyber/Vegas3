@@ -31,3 +31,10 @@ The detailed planner (hotels, all 24 Michelin distinctions, activities, question
 python3 scripts/build_site.py
 python3 scripts/verify_site.py
 ```
+
+## Rebuild and verify (this planner)
+
+- Data: `data/site.json` (single source of truth; every row cites source IDs listed in `sources`).
+- Rebuild: `python3 scripts/build_site.py` (writes `pages/` and `assets/`).
+- Verify: `python3 scripts/verify_site.py` (sources, internal links, external links).
+- Pages is published from `main` `/` by the legacy Pages build. `.github/workflows/pages.yml` validates the build on every push and PR.
