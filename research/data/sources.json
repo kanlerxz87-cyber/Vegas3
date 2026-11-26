@@ -1,0 +1,270 @@
+{
+  "as_of": "2026-11-26",
+  "method": "Official pages were fetched with the research fetch tool on 2026-11-26 (UTC). Secondary press was used only to cross-check, never as the sole source for a value. Where the official page could not be fetched, the value was left blank and flagged.",
+  "sources": [
+    {
+      "id": "S01",
+      "org": "Las Vegas Convention and Visitors Authority (Visit Las Vegas)",
+      "type": "Official destination (government-funded tourism agency)",
+      "url": "https://www.visitlasvegas.com/michelin-guide-restaurants/",
+      "used_for": "Full Las Vegas Michelin list (4 starred, 3 Bib Gourmand, 17 Recommended = 24); Michelin FAQ (reservation windows 30-60 days)",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S02",
+      "org": "MICHELIN Guide (guide.michelin.com)",
+      "type": "Official (Michelin)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurants",
+      "used_for": "Intended primary source for stars and Bib status",
+      "status": "FAILED from this environment (3 URL variants tried). Verify manually."
+    },
+    {
+      "id": "S03",
+      "org": "MGM Grand (MGM Resorts)",
+      "type": "Official property",
+      "url": "https://mgmgrand.mgmresorts.com/en/hotel.html",
+      "used_for": "Room types and bed counts; address (via restaurant page)",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S04",
+      "org": "Joël Robuchon, MGM Grand",
+      "type": "Official restaurant page",
+      "url": "https://mgmgrand.mgmresorts.com/en/restaurants/joel-robuchon-french-restaurant.html",
+      "used_for": "Two MICHELIN Stars (2026), hours, price level, dress code, phone",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S05",
+      "org": "L'Atelier de Joël Robuchon, MGM Grand",
+      "type": "Official restaurant page",
+      "url": "https://mgmgrand.mgmresorts.com/en/restaurants/latelier-joel-robuchon-french-restaurant.html",
+      "used_for": "One MICHELIN Star (2026), hours, price level, address",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S06",
+      "org": "é by José Andrés, The Cosmopolitan",
+      "type": "Official restaurant page",
+      "url": "https://cosmopolitanlasvegas.mgmresorts.com/en/restaurants/e-by-jose-andres.html",
+      "used_for": "One MICHELIN Star (2026), hours, booking window (up to 3 months), address",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S07",
+      "org": "Restaurant Guy Savoy, Caesars Palace",
+      "type": "Official restaurant page",
+      "url": "https://www.caesars.com/caesars-palace/restaurants/restaurant-guy-savoy",
+      "used_for": "Restaurant identity, price level, reservation channel. Full hours NOT visible.",
+      "status": "Fetched OK (partial hours)"
+    },
+    {
+      "id": "S08",
+      "org": "China Poblano, The Cosmopolitan",
+      "type": "Official restaurant page",
+      "url": "https://cosmopolitanlasvegas.mgmresorts.com/en/restaurants/china-poblano.html",
+      "used_for": "Bib Gourmand, weekly hours, cocktail hour, price level",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S09",
+      "org": "Esther's Kitchen",
+      "type": "Official restaurant site",
+      "url": "https://www.estherslv.com/",
+      "used_for": "Seasonal Italian, Arts District (no hours on page)",
+      "status": "Fetched OK (no hours)"
+    },
+    {
+      "id": "S10",
+      "org": "Yen Viet Kitchen",
+      "type": "Official restaurant site",
+      "url": "https://www.yenvietkitchen.com/",
+      "used_for": "Dine-in and online ordering (no hours or address on page)",
+      "status": "Fetched OK (no hours)"
+    },
+    {
+      "id": "S11",
+      "org": "The Venetian Resort",
+      "type": "Official property",
+      "url": "https://www.venetianlasvegas.com/hotel.html",
+      "used_for": "Two Queen Suite: 750 sq ft, 2 Queen Beds, Oversized Bathroom listing",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S12",
+      "org": "Caesars Palace",
+      "type": "Official property",
+      "url": "https://www.caesars.com/caesars-palace/hotel/rooms",
+      "used_for": "Colosseum Strip View Room, 2 Queens; Advanced Purchase Savings (up to 30%, 30+ days); Suite Escape; default widget dates Dec 25-27, 2026",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S13",
+      "org": "Bellagio",
+      "type": "Official property",
+      "url": "https://bellagio.mgmresorts.com/en/hotel.html",
+      "used_for": "Premier Two Queen and other 2 Queen Bed rooms",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S14",
+      "org": "The Cosmopolitan of Las Vegas",
+      "type": "Official property",
+      "url": "https://cosmopolitanlasvegas.mgmresorts.com/en/hotel.html",
+      "used_for": "City Room Queen (2 Queen Beds) and Terrace Studio Two Queen",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S15",
+      "org": "ARIA Resort & Casino",
+      "type": "Official property",
+      "url": "https://aria.mgmresorts.com/en/hotel.html",
+      "used_for": "Deluxe Two Queen Room (2 Queen Beds)",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S16",
+      "org": "Wynn Las Vegas",
+      "type": "Official property",
+      "url": "https://www.wynnlasvegas.com/rooms-and-suites/wynn-tower-suites/wynn-tower-two-queen",
+      "used_for": "Wynn Tower Suite Two Queens (640 sq ft, two Queen Wynn Dream beds, Tower Suites pool access, $50 breakfast credit)",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S17",
+      "org": "Resorts World Las Vegas",
+      "type": "Official property",
+      "url": "https://www.rwlasvegas.com/hotel/rooms-suites",
+      "used_for": "Attempted room page",
+      "status": "FAILED (not found). Room data UNVERIFIED."
+    },
+    {
+      "id": "S18",
+      "org": "Office of Personnel Management (OPM)",
+      "type": "Official US government",
+      "url": "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/",
+      "used_for": "2027 federal holiday calendar: Monday Feb 15, 2027 = Washington's Birthday (Presidents' Day)",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S19",
+      "org": "Regional Transportation Commission of Southern Nevada (RTC)",
+      "type": "Official transit agency",
+      "url": "https://www.rtcsnv.com/ways-to-travel/transit-services/",
+      "used_for": "39 bus routes, 400+ vehicles; no subway listed",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S20",
+      "org": "Las Vegas Monorail",
+      "type": "Official operator",
+      "url": "https://www.lvmonorail.com/",
+      "used_for": "Seven stations; station hours; early-closure notice; Instagram @lvmonorail",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S21",
+      "org": "Bureau of Reclamation (Hoover Dam)",
+      "type": "Official US government",
+      "url": "https://www.usbr.gov/lc/hooverdam/",
+      "used_for": "Tour tickets 'not currently available' at capture; special-event restriction windows; agency social links",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S22",
+      "org": "Bureau of Land Management (Red Rock Canyon NCA)",
+      "type": "Official US government",
+      "url": "https://www.blm.gov/visit/red-rock-canyon-national-conservation-area",
+      "used_for": "Timed entry Oct 1-May 31, 8am-5pm; 17 miles, about 30 minutes; no public transit",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S23",
+      "org": "Nevada State Parks (Valley of Fire)",
+      "type": "Official state government",
+      "url": "https://parks.nv.gov/parks/valley-of-fire",
+      "used_for": "Hours, fees ($10 / $15), reservation rules, closures, rideshare warning",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S24",
+      "org": "Sphere Entertainment (Sphere Las Vegas)",
+      "type": "Official venue",
+      "url": "https://www.thespherevegas.com/",
+      "used_for": "Confirms official site; disclaimer on availability. Show hours NOT captured.",
+      "status": "Fetched OK (redirects to thesphere.com)"
+    },
+    {
+      "id": "S25",
+      "org": "Fremont Street Experience",
+      "type": "Official destination",
+      "url": "https://fremontstreetexperience.com/",
+      "used_for": "Five-block downtown, free nightly entertainment on three stages, SlotZilla, The Canopy",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S26",
+      "org": "Visit Las Vegas (LVCVA) Michelin FAQ",
+      "type": "Official destination",
+      "url": "https://www.visitlasvegas.com/michelin-guide-restaurants/",
+      "used_for": "Starred restaurants generally release tables 30 to 60 days ahead (official FAQ)",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S27",
+      "org": "Eater Las Vegas (via search snippet)",
+      "type": "Secondary press (cross-check only)",
+      "url": "",
+      "used_for": "Cross-check of 2026 star list; Bib price guidance (not used)",
+      "status": "Name only; no URL captured. Not used for any value."
+    },
+    {
+      "id": "S28",
+      "org": "Las Vegas Weekly (via search snippet)",
+      "type": "Secondary press (cross-check only)",
+      "url": "",
+      "used_for": "Cross-check: four starred, three Bib, Recommended list",
+      "status": "Name only; no URL captured. Not used for any value."
+    },
+    {
+      "id": "S29",
+      "org": "The Adventurist Magazine (via search snippet)",
+      "type": "Secondary press (cross-check only)",
+      "url": "",
+      "used_for": "Cross-check: 24 Las Vegas distinctions; Southwest totals",
+      "status": "Name only; no URL captured. Not used for any value."
+    },
+    {
+      "id": "S30",
+      "org": "Matador Network (via search snippet)",
+      "type": "Secondary press (cross-check only)",
+      "url": "",
+      "used_for": "Cross-check of starred and Bib list; notes Yen Viet on Decatur Blvd",
+      "status": "Name only; no URL captured. Not used for any value."
+    },
+    {
+      "id": "S31",
+      "org": "Wynn Las Vegas, Wing Lei",
+      "type": "Official restaurant page",
+      "url": "https://www.wynnlasvegas.com/dining/fine-dining/wing-lei",
+      "used_for": "Hours, dress code, phone, Michelin not stated on page (LVCVA lists Recommended)",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S32",
+      "org": "The Venetian, COTE",
+      "type": "Official restaurant page",
+      "url": "https://www.venetianlasvegas.com/dining/restaurants/cote.html",
+      "used_for": "Hours, $$$ symbol, phone, booking link",
+      "status": "Fetched OK"
+    },
+    {
+      "id": "S33",
+      "org": "Caesars Palace, rooms page",
+      "type": "Official property",
+      "url": "https://www.caesars.com/caesars-palace/hotel/rooms",
+      "used_for": "Advanced Purchase Savings, Suite Escape, widget dates",
+      "status": "Fetched OK"
+    }
+  ]
+}

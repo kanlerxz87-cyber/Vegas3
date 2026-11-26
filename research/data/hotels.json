@@ -1,0 +1,222 @@
+{
+  "as_of": "2026-11-26",
+  "stay_assumption": {
+    "check_in": "2027-02-15",
+    "check_out": "2027-02-22",
+    "nights": 7,
+    "guests": "2 adults",
+    "note": "Feb 15 2027 is a Monday and Washington's Birthday (Presidents' Day) per OPM. Seven nights is the requested pricing basis; the preferred Feb 15-18 window is only 3 nights (see questions.html)."
+  },
+  "ranking_method": "Michelin-listed restaurants located on the hotel's own property (official property pages + LVCVA listing), sorted by total Michelin distinctions, then by starred count. Travel-time counts (within 1 hour by bus or monorail) are NOT verified and are not used for ranking; see flags.",
+  "hotels": [
+    {
+      "id": "venetian",
+      "name": "The Venetian Resort (incl. The Palazzo)",
+      "area": "The Strip",
+      "official_url": "https://www.venetianlasvegas.com/hotel.html",
+      "source_url": "https://www.venetianlasvegas.com/hotel.html",
+      "address": "",
+      "room_evidence": "Newly Remodeled Luxury Two Queen Suite: 750 sq ft, 2 Queen Beds, Oversized Bathroom, Living Room (official listing)",
+      "queen_or_larger": "Yes (2 Queen Beds listed)",
+      "private_bathroom": "Listed as 'Oversized Bathroom' in the official room listing; 'private' wording not confirmed",
+      "michelin_on_property": [
+        {
+          "name": "Bouchon",
+          "distinction": "Michelin Recommended",
+          "source_url": "https://www.visitlasvegas.com/michelin-guide-restaurants/"
+        },
+        {
+          "name": "COTE Las Vegas",
+          "distinction": "Michelin Recommended",
+          "source_url": "https://www.visitlasvegas.com/michelin-guide-restaurants/"
+        },
+        {
+          "name": "Estiatorio Milos",
+          "distinction": "Michelin Recommended",
+          "source_url": "https://www.visitlasvegas.com/michelin-guide-restaurants/"
+        },
+        {
+          "name": "Mott 32 (The Palazzo)",
+          "distinction": "Michelin Recommended",
+          "source_url": "https://www.visitlasvegas.com/michelin-guide-restaurants/"
+        }
+      ],
+      "michelin_listed_count": 4,
+      "michelin_starred_count": 0,
+      "price_7_nights_usd": "",
+      "price_status": "UNVERIFIED. No live rate for Feb 15-22, 2027 could be retrieved from an official source.",
+      "booking_notes": "Official Venetian page links to 'Check Rates' booking engine; no fixed rate printed."
+    },
+    {
+      "id": "mgm-grand",
+      "name": "MGM Grand Las Vegas",
+      "area": "The Strip",
+      "official_url": "https://mgmgrand.mgmresorts.com/en/hotel.html",
+      "source_url": "https://mgmgrand.mgmresorts.com/en/hotel.html",
+      "address": "",
+      "room_evidence": "MGM Two Queen (446 sq ft, 2 Queen Beds, max 4); MGM Two Queen Strip View; Restore MGM Executive Two Queen Suite (675 sq ft, 2 Queen Beds)",
+      "queen_or_larger": "Yes (2 Queen Beds listed)",
+      "private_bathroom": "Not stated on fetched listing. UNVERIFIED.",
+      "michelin_on_property": [
+        {
+          "name": "Joël Robuchon (Restaurant de Joël Robuchon)",
+          "distinction": "Two MICHELIN Stars (2026)",
+          "source_url": "https://mgmgrand.mgmresorts.com/en/restaurants/joel-robuchon-french-restaurant.html"
+        },
+        {
+          "name": "L'Atelier de Joël Robuchon",
+          "distinction": "One MICHELIN Star (2026)",
+          "source_url": "https://mgmgrand.mgmresorts.com/en/restaurants/latelier-joel-robuchon-french-restaurant.html"
+        }
+      ],
+      "michelin_listed_count": 2,
+      "michelin_starred_count": 2,
+      "price_7_nights_usd": "",
+      "price_status": "UNVERIFIED. No dated Feb 2027 total retrieved from the official page.",
+      "booking_notes": ""
+    },
+    {
+      "id": "cosmopolitan",
+      "name": "The Cosmopolitan of Las Vegas",
+      "area": "The Strip",
+      "official_url": "https://cosmopolitanlasvegas.mgmresorts.com/en/hotel.html",
+      "source_url": "https://cosmopolitanlasvegas.mgmresorts.com/en/hotel.html",
+      "address": "",
+      "room_evidence": "City Room Queen (460 sq ft, 2 Queen Beds, max 4); Terrace Studio Two Queen (730 sq ft, 2 Queen Beds)",
+      "queen_or_larger": "Yes (2 Queen Beds listed)",
+      "private_bathroom": "Not stated on fetched listing. UNVERIFIED.",
+      "michelin_on_property": [
+        {
+          "name": "é by José Andrés",
+          "distinction": "One MICHELIN Star (2026)",
+          "source_url": "https://cosmopolitanlasvegas.mgmresorts.com/en/restaurants/e-by-jose-andres.html"
+        },
+        {
+          "name": "China Poblano",
+          "distinction": "Bib Gourmand (2026)",
+          "source_url": "https://cosmopolitanlasvegas.mgmresorts.com/en/restaurants/china-poblano.html"
+        }
+      ],
+      "michelin_listed_count": 2,
+      "michelin_starred_count": 1,
+      "price_7_nights_usd": "",
+      "price_status": "UNVERIFIED. No dated Feb 2027 rate retrieved.",
+      "booking_notes": ""
+    },
+    {
+      "id": "caesars-palace",
+      "name": "Caesars Palace",
+      "area": "The Strip",
+      "official_url": "https://www.caesars.com/caesars-palace/hotel/rooms",
+      "source_url": "https://www.caesars.com/caesars-palace/hotel/rooms",
+      "address": "",
+      "room_evidence": "Colosseum Strip View Room | 2 Queens | Non-Smoking (official room listing)",
+      "queen_or_larger": "Yes (2 Queens listed)",
+      "private_bathroom": "Not stated on fetched listing. UNVERIFIED.",
+      "michelin_on_property": [
+        {
+          "name": "Restaurant Guy Savoy",
+          "distinction": "One MICHELIN Star (2026)",
+          "source_url": "https://www.caesars.com/caesars-palace/restaurants/restaurant-guy-savoy"
+        }
+      ],
+      "michelin_listed_count": 1,
+      "michelin_starred_count": 1,
+      "price_7_nights_usd": "",
+      "price_status": "UNVERIFIED. The rooms page widget defaults to Dec 25-27, 2026 (not Feb 2027).",
+      "booking_notes": "Official Advanced Purchase Savings: up to 30% off for stays 30+ days in advance (additional terms apply). Official Suite Escape: book through Dec 31, 2026 for stays through Sep 2027 on select suites (additional terms apply). Neither is a verified Feb 2027 price."
+    },
+    {
+      "id": "bellagio",
+      "name": "Bellagio",
+      "area": "The Strip",
+      "official_url": "https://bellagio.mgmresorts.com/en/hotel.html",
+      "source_url": "https://bellagio.mgmresorts.com/en/hotel.html",
+      "address": "",
+      "room_evidence": "Premier Two Queen (510 sq ft, 2 Queen Beds, max 4); Fountain View Two Queen (510 sq ft); Spa Premier Two Queen (510 sq ft); King rooms also listed",
+      "queen_or_larger": "Yes (2 Queen Beds listed)",
+      "private_bathroom": "Not stated on fetched listing. UNVERIFIED.",
+      "michelin_on_property": [
+        {
+          "name": "Michael Mina",
+          "distinction": "Michelin Recommended (MGM calls it 'Selected')",
+          "source_url": "https://www.visitlasvegas.com/michelin-guide-restaurants/"
+        }
+      ],
+      "michelin_listed_count": 1,
+      "michelin_starred_count": 0,
+      "price_7_nights_usd": "",
+      "price_status": "UNVERIFIED. No dated Feb 2027 total retrieved from the official page.",
+      "booking_notes": ""
+    },
+    {
+      "id": "aria",
+      "name": "ARIA Resort & Casino",
+      "area": "The Strip (CityCenter)",
+      "official_url": "https://aria.mgmresorts.com/en/hotel.html",
+      "source_url": "https://aria.mgmresorts.com/en/hotel.html",
+      "address": "",
+      "room_evidence": "Deluxe Two Queen Room (520 sq ft, 2 Queen Beds, max 4); Restore Deluxe Two Queen Strip View Room (520 sq ft)",
+      "queen_or_larger": "Yes (2 Queen Beds listed)",
+      "private_bathroom": "Not stated on fetched listing. UNVERIFIED.",
+      "michelin_on_property": [
+        {
+          "name": "Gymkhana",
+          "distinction": "Michelin Recommended (MGM calls it 'Selected')",
+          "source_url": "https://www.visitlasvegas.com/michelin-guide-restaurants/"
+        }
+      ],
+      "michelin_listed_count": 1,
+      "michelin_starred_count": 0,
+      "price_7_nights_usd": "",
+      "price_status": "UNVERIFIED. No dated Feb 2027 rate retrieved.",
+      "booking_notes": ""
+    },
+    {
+      "id": "wynn",
+      "name": "Wynn Las Vegas",
+      "area": "The Strip",
+      "official_url": "https://www.wynnlasvegas.com/rooms-and-suites/wynn-tower-suites/wynn-tower-two-queen",
+      "source_url": "https://www.wynnlasvegas.com/rooms-and-suites/wynn-tower-suites/wynn-tower-two-queen",
+      "address": "",
+      "room_evidence": "Wynn Tower Suite Two Queens: 640 sq ft, two Queen Wynn Dream beds, Tower Suites entrance and registration, access to the private Tower Suites pool, $50 daily breakfast credit (official room page). Official room page describes a 'spacious bathroom'.",
+      "queen_or_larger": "Yes (2 Queen beds)",
+      "private_bathroom": "Room page describes a 'spacious bathroom' in the room. 'Private' wording not confirmed.",
+      "michelin_on_property": [
+        {
+          "name": "Wing Lei",
+          "distinction": "Michelin Recommended",
+          "source_url": "https://www.visitlasvegas.com/michelin-guide-restaurants/"
+        }
+      ],
+      "michelin_listed_count": 1,
+      "michelin_starred_count": 0,
+      "price_7_nights_usd": "",
+      "price_status": "UNVERIFIED. No dated Feb 2027 rate retrieved. Official room page links to a booking engine only.",
+      "booking_notes": "Official room page links to reservations.wynnlasvegas.com. No dated rate."
+    },
+    {
+      "id": "resorts-world",
+      "name": "Resorts World Las Vegas",
+      "area": "The Strip",
+      "official_url": "",
+      "source_url": "",
+      "address": "",
+      "room_evidence": "NOT VERIFIED. The official room page could not be fetched from this environment.",
+      "queen_or_larger": "UNVERIFIED",
+      "private_bathroom": "UNVERIFIED",
+      "michelin_on_property": [
+        {
+          "name": "Stubborn Seed",
+          "distinction": "Michelin Recommended",
+          "source_url": "https://www.visitlasvegas.com/michelin-guide-restaurants/"
+        }
+      ],
+      "michelin_listed_count": 1,
+      "michelin_starred_count": 0,
+      "price_7_nights_usd": "",
+      "price_status": "UNVERIFIED",
+      "booking_notes": "Included for completeness; room facts still need an official check."
+    }
+  ]
+}

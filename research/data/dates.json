@@ -1,0 +1,72 @@
+{
+  "as_of": "2026-11-26",
+  "window": {
+    "earliest": "2027-02-15",
+    "latest": "2027-03-23",
+    "source": "User brief"
+  },
+  "trip_length": "1-2 weeks (user brief)",
+  "preferred": {
+    "check_in": "2027-02-15",
+    "check_out": "2027-02-18",
+    "nights": 3
+  },
+  "priced_option": {
+    "check_in": "2027-02-15",
+    "check_out": "2027-02-22",
+    "nights": 7,
+    "source": "User brief requires 7-night totals"
+  },
+  "calendar_facts": [
+    {
+      "fact": "Feb 15, 2027 is a Monday.",
+      "basis": "Calendar calculation (verified against python calendar module).",
+      "source_url": "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/"
+    },
+    {
+      "fact": "Monday, Feb 15, 2027 is Washington's Birthday (Presidents' Day) for federal employees.",
+      "basis": "OPM official 2027 holiday schedule.",
+      "source_url": "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/"
+    },
+    {
+      "fact": "Feb 22, 2027 is also a Monday. The 7-night option Feb 15-22 therefore starts and ends on a Monday.",
+      "basis": "Calendar calculation.",
+      "source_url": ""
+    },
+    {
+      "fact": "Easter Sunday 2027 is March 28, 2027 (calculated with the Gregorian algorithm). Two weeks before is March 14.",
+      "basis": "Calculation; compare with official calendars before relying on it.",
+      "source_url": ""
+    }
+  ],
+  "restaurant_booking_windows": [
+    {
+      "venue": "é by José Andrés",
+      "window": "Reservations can be made online up to three months in advance (official).",
+      "implication": "For a Feb 15, 2027 table, three months earlier is about Nov 15, 2026 (calendar calculation). Confirm the venue's release rule.",
+      "source_url": "https://cosmopolitanlasvegas.mgmresorts.com/en/restaurants/e-by-jose-andres.html"
+    },
+    {
+      "venue": "Michelin-starred restaurants in Las Vegas (general)",
+      "window": "Most release tables 30 to 60 days ahead (LVCVA official FAQ).",
+      "implication": "Booking dates for Feb 2027 are not yet open for many venues; watch the calendar.",
+      "source_url": "https://www.visitlasvegas.com/michelin-guide-restaurants/"
+    }
+  ],
+  "hotel_booking_windows": [
+    {
+      "offer": "Caesars Palace Advanced Purchase Savings",
+      "terms": "Up to 30% off for stays 30+ days in advance; additional terms apply (official).",
+      "source_url": "https://www.caesars.com/caesars-palace/hotel/rooms"
+    },
+    {
+      "offer": "MGM Resorts advance-purchase rate",
+      "terms": "Not verified in this session (not on fetched pages). Removed from reliance.",
+      "source_url": ""
+    }
+  ],
+  "cheapest_booking_time": {
+    "answer": "UNVERIFIED. No official or historical rate series for these dates was available, so the cheapest booking time cannot be determined from verified data.",
+    "source_url": ""
+  }
+}

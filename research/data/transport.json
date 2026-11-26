@@ -1,0 +1,42 @@
+{
+  "as_of": "2026-11-26",
+  "note": "The brief asks for travel 'by subway or bus'. Las Vegas has no subway. The official sources reviewed list a bus network (RTC) and a monorail, and no subway.",
+  "modes": [
+    {
+      "id": "rtc-bus",
+      "name": "RTC bus network (Las Vegas Valley)",
+      "operator": "Regional Transportation Commission of Southern Nevada (RTC)",
+      "facts": "RTC says it provides service on 39 routes with more than 400 vehicles (official transit overview). Airport routes: not captured.",
+      "subway": "No subway service is listed on RTC's official transit overview page.",
+      "source_url": "https://www.rtcsnv.com/ways-to-travel/transit-services/",
+      "route_times": "UNVERIFIED. Point-to-point times were not retrieved. The official RTC Trip Planner was not run for hotel-to-restaurant pairs."
+    },
+    {
+      "id": "monorail",
+      "name": "Las Vegas Monorail",
+      "operator": "Las Vegas Monorail",
+      "facts": "Seven Strip stations; trains every 4-8 minutes (official). Station hours: Mon 7 am-midnight; Tue-Thu 7 am-2 am; Fri-Sun 7 am-3 am (official).",
+      "subway": "Elevated monorail, not a subway.",
+      "source_url": "https://www.lvmonorail.com/",
+      "route_times": "Not captured (official route map and per-trip times not captured)"
+    },
+    {
+      "id": "red-rock-transit",
+      "name": "Red Rock Canyon transit access",
+      "operator": "BLM (official)",
+      "facts": "Public transportation does not extend to Red Rock Canyon (official BLM page). Rideshare is limited to the visitor center and trailheads (official BLM page).",
+      "subway": "N/A",
+      "source_url": "https://www.blm.gov/visit/red-rock-canyon-national-conservation-area",
+      "route_times": "About 30 minutes from the Strip by car (official BLM text). Not reachable by bus."
+    },
+    {
+      "id": "valley-of-fire-transit",
+      "name": "Valley of Fire transit access",
+      "operator": "Nevada State Parks (official)",
+      "facts": "Official park page warns that Uber/Lyft can leave visitors stranded in the park because return rides are often unavailable.",
+      "subway": "N/A",
+      "source_url": "https://parks.nv.gov/parks/valley-of-fire",
+      "route_times": "UNVERIFIED"
+    }
+  ]
+}
