@@ -1,4 +1,20 @@
-# COORDINATION.md: shared task board
+# Coordination board
+
+| Task | Status | Owner session | File scope |
+|---|---|---|---|
+| Trip-planning dashboard, research, and integration | done | arena-84047ba4 | `index.html`, `styles.css`, `app.js`, `README.md`, `.github/workflows/pages.yml`, `COORDINATION.md` |
+
+## Work log — arena-84047ba4
+
+- Repository reviewed; it initially contained only README. A concurrently active session had created a dashboard on main while this session built a separate alternative; overlap was resolved by preserving the main-branch dashboard rather than overwriting another session's work. This branch added the GitHub Pages workflow and source/verification records.
+- Official sources reviewed: MICHELIN Guide Las Vegas directory https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurants; Restaurant de Joël Robuchon https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/restaurant-de-joel-robuchon; L'Atelier de Joël Robuchon https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/l-atelier-de-joel-robuchon-las-vegas; Restaurant Guy Savoy https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/guy-savoy-las-vegas; official hotel sites (MGM Grand, Caesars Palace, Bellagio, Cosmopolitan, Wynn) and RTC transit planner.
+- Verification: individual Michelin award pages checked; JavaScript syntax and anchor targets checked on the dashboard draft. The deployed main dashboard remains the other session's implementation and is authoritative after preserving the overlap. The site displays unverified future hotel prices, transit, hours and restaurant cost as unknown rather than fabricated.
+- Irregularities: user's preferred Feb 15–18 trip is 3 nights, conflicting with requested 7-night totals. Live 2027 rates and an evidence-based cheapest booking date were not available. No handles were verified for social links. Transit under one hour cannot be confirmed without actual route/time and selected hotel. Guide has more entries than the verified starred subset.
+- PR #1: https://github.com/kanlerxz87-cyber/Vegas3/pull/1 — merged 2026-11-26 (merge commit `bc5782a7d3405eb917f362504f366955193e28d6`). GitHub Actions static deployment run 45901530495 succeeded; GitHub Pages build/deploy run 45901530986 succeeded.
+
+---
+
+## Session arena-7dd5ad60: data, verified subpages, verifier (integration)
 
 Branch for this session: `arena/7dd5ad60-vegas3` (base `ec27311` on `main`).
 Session ID: `arena-7dd5ad60`. This session owns every task below. It is the only active session on this branch, so it also performed the final integration step.
@@ -33,3 +49,9 @@ Status values: `unclaimed`, `in progress`, `done`, `needs review` (`needs review
 - PR: https://github.com/kanlerxz87-cyber/Vegas3/pull/4 (arena/7dd5ad60-vegas3 -> main)
 - Merge result: pending
 - Pages deploy: pending
+
+### Conflict log (arena-7dd5ad60)
+
+- While this branch was open, `main` received PR #1 and PR #3 from session arena-84047ba4 (root dashboard, `pages.yml`, its COORDINATION entry). PR #4 showed as conflicting.
+- Resolution: merged `origin/main` into `arena/7dd5ad60-vegas3`. Kept the other session's `index.html`, `styles.css`, `app.js`, `.github/workflows/pages.yml` and its COORDINATION entry and log unchanged. In `index.html` only added a list of links to the `docs/` subpages in the side menu. README: kept their text and appended a subpage section. Nothing was overwritten.
+- Added flagged item F-24 for the Michelin citations in the root dashboard, which could not be re-opened from this sandbox.

@@ -137,7 +137,13 @@ class LinkParser(HTMLParser):
 
 allowed_external = known_urls | data_urls
 external_seen = set()
-for p in pages:
+# Root dashboard (index.html, shared with the other session) is checked too.
+# Its external links are reviewed on the Flagged page (F-24) rather than auto-approved.
+root_index = ROOT / "index.html"
+check_pages = [(p, DOCS) for p in pages]
+if root_index.exists():
+    check_pages.append((root_index, ROOT))
+for p, base in check_pages:
     parser = LinkParser()
     parser.feed(p.read_text(encoding="utf-8"))
     for href in parser.hrefs:
@@ -145,6 +151,8 @@ for p in pages:
             continue
         if href.startswith(("http://", "https://")):
             external_seen.add(href)
+            if p == root_index:
+                continue
             if href not in allowed_external:
                 errors.append(f"{p.name}: external link not in sources or data: {href}")
             if href.startswith("http://"):
@@ -153,8 +161,8 @@ for p in pages:
         target = href.split("#")[0]
         if target == "":
             continue
-        if not (DOCS / target).exists():
-            errors.append(f"{p.name}: broken internal link -> {href}")
+        if not (base / target).exists():
+            errors.append(f"{p.relative_to(ROOT)}: broken internal link -> {href}")
 
 print(f"built pages: {len(pages)}; unique external links: {len(external_seen)}")
 for w in warnings:
