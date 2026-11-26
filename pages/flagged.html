@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for Review · Vegas3</title>
+<meta name="description" content="Las Vegas trip planner: hotels, Michelin dining, activities, questions and flagged items. Every row links to an official source.">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="index.html">Vegas3</a><span>Las Vegas trip planner</span></div>
+  <nav class="nav"><a href="../index.html">← Main dashboard</a><a href="index.html">Home</a><a href="trip-dates.html">Trip dates</a><a href="hotels.html">Hotels</a><a href="restaurants.html">Michelin dining</a><a href="activities.html">Activities</a><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="repo-review.html">Repo review</a><a href="flagged.html" class="active">Flagged for Review</a><a href="sources.html">Sources</a></nav>
+</header>
+<main class="wrap">
+
+<h1>Flagged for Review</h1>
+<p class="lead">Unverified values, conflicts, and irregularities. These do not block publishing. Each item shows its source (or “—” if none exists) so you can check it.</p>
+<section class="card">
+<div class="table-wrap"><table class="table wide"><thead><tr><th>Item</th><th>Issue</th><th>Source</th></tr></thead><tbody><tr><td>All hotel 7-night totals (Feb 15–22, 2027)</td><td>No verified live rate for any hotel; left blank.</td><td><span class="bad">S10–S13 (room pages only) (missing)</span></td></tr><tr><td>Hotel private bathroom (Cosmopolitan, ARIA, Caesars Palace)</td><td>Not stated on fetched official room pages.</td><td><span class="bad">S10, S11, S13 (missing)</span></td></tr><tr><td>Hotels not fetched: MGM Grand, Bellagio, Wynn</td><td>Official pages unavailable in this run; room data blank.</td><td><span class="bad">S1, S2 (missing)</span></td></tr><tr><td>Bus/subway travel time ≤1 hour (all hotels and venues)</td><td>Not calculated; no verified travel-time source.</td><td><a href="https://www.rtcsnv.com/" rel="noopener" target="_blank" title="RTC of Southern Nevada — home page (bus transit; F1 construction service alert)">S15</a></td></tr><tr><td>Restaurant hours — Guy Savoy, 17 Recommended venues, Esther&#x27;s Kitchen, Yen Viet Kitchen</td><td>Not verified from official pages.</td><td><span class="bad">S1, S5, S7, S8 (missing)</span></td></tr><tr><td>Restaurant cost for 2 adults (all 24)</td><td>Exact or range prices not verified; only Michelin price symbols shown.</td><td><span class="bad">S2–S6, S9 (missing)</span></td></tr><tr><td>Social links (YouTube / TikTok / Instagram)</td><td>None verified in this run.</td><td>—</td></tr><tr><td>Red Rock fees and timed-entry booking</td><td>Fees page not fetched.</td><td><a href="https://www.blm.gov/visit/red-rock-canyon-national-conservation-area" rel="noopener" target="_blank" title="Bureau of Land Management — Red Rock Canyon NCA (17 mi, ~30 min, no public transit, timed entry)">S16</a></td></tr><tr><td>Bellagio Fountains</td><td>No official page verified; hours blank.</td><td>—</td></tr><tr><td>COTE &#x27;first-ever Michelin-starred&#x27; claim</td><td>Conflicts with LVCVA (S1), which lists COTE as Recommended.</td><td><span class="bad">S9, S1 (missing)</span></td></tr><tr><td>Trip length conflict</td><td>Preferred 3 nights vs 1–2 week requirement and 7-night pricing request.</td><td>User brief</td></tr><tr><td>Hoover Dam tickets</td><td>Snapshot says not currently available.</td><td><a href="https://www.usbr.gov/lc/hooverdam/" rel="noopener" target="_blank" title="Bureau of Reclamation — Hoover Dam (tours, special-event restrictions, ticket status snapshot)">S17</a></td></tr><tr><td>Repo: README minimal; no LICENSE/.gitignore; COORDINATION.md created this session</td><td>Irregularities for review.</td><td><a href="https://github.com/kanlerxz87-cyber/Vegas3/commit/ec27311da927c8240547b05d9ee65bbd55a5f2a1" rel="noopener" target="_blank" title="GitHub — this repository&#x27;s base commit ec27311">S20</a></td></tr></tbody></table></div>
+</section>
+
+</main>
+<footer class="footer">
+  <p>Data checked 2026-11-26. Every table row links to an official source. Blank cells are <span class="bad">NOT VERIFIED</span> and listed on the <a href="flagged.html">Flagged for Review</a> page.</p>
+  <p><a href="https://github.com/kanlerxz87-cyber/Vegas3">Repository</a></p>
+</footer>
+</body>
+</html>

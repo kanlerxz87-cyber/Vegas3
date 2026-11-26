@@ -1,394 +1,458 @@
 #!/usr/bin/env python3
-"""Build the static GitHub Pages site in docs/ from data/*.json.
+"""Build the static GitHub Pages site from data/site.json.
 
-Stdlib only. Blank data values are rendered as 'Unverified' and are never filled in.
-Run: python3 scripts/build_site.py
+Run:  python3 scripts/build_site.py
+Output: pages/*.html (hub = pages/index.html), assets/style.css, .nojekyll.
+The root index.html belongs to the earlier dashboard and is NOT generated here.
+No external dependencies (Python 3 standard library only).
 """
 import html
 import json
-import os
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DATA = ROOT / "data"
-DOCS = ROOT / "docs"
+DATA = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
+SRC = DATA["sources"]
+META = DATA["meta"]
 
 
-def load(name):
-    with open(DATA / name, encoding="utf-8") as f:
-        return json.load(f)
+def e(text):
+    return html.escape(str(text if text is not None else ""), quote=True)
 
 
-SOURCES = {s["id"]: s for s in load("sources.json")["sources"]}
-ACCESSED = load("sources.json")["accessed"]
-
-NAV = [
-    ("index.html", "Home"),
-    ("hotels.html", "Hotels"),
-    ("restaurants.html", "Michelin restaurants"),
-    ("activities.html", "Activities & transit"),
-    ("booking.html", "Dates & booking"),
-    ("questions.html", "Questions"),
-    ("suggestions.html", "Suggestions"),
-    ("flagged.html", "Flagged for Review"),
-    ("sources.html", "Sources"),
-    ("repo-review.html", "Repo review"),
-]
-
-
-def e(value):
-    return html.escape(str(value)) if value is not None else ""
-
-
-def unv(text=""):
-    """Blank or unknown value. Rendered as an explicit unverified marker."""
-    if text is None or str(text).strip() == "":
-        return '<span class="unv">Unverified</span>'
-    return e(text)
+def badge(status):
+    cls = {"Verified": "ok", "Partial": "warn", "Unverified": "bad", "Calculated": "ok"}.get(status, "bad")
+    return f'<span class="badge {cls}">{e(status)}</span>'
 
 
 def src_links(ids):
     if not ids:
-        return '<span class="unv">No source</span>'
+        return '<span class="muted">none</span>'
     parts = []
     for sid in ids:
-        s = SOURCES.get(sid)
-        if s is None:
-            parts.append(f'<span class="unv">{e(sid)} missing</span>')
+        if sid in SRC:
+            parts.append(f'<a href="{e(SRC[sid]["url"])}" rel="noopener" target="_blank" title="{e(SRC[sid]["label"])}">{e(sid)}</a>')
         else:
-            parts.append(
-                f'<a href="{e(s["url"])}" target="_blank" rel="noopener" title="{e(s["title"])}">{e(sid)}</a>'
-            )
-    return ", ".join(parts)
+            parts.append(f'<span class="bad">{e(sid)} (missing)</span>')
+    return " · ".join(parts)
 
 
-def link(url, label=None):
+def flags_html(flags):
+    if not flags:
+        return ""
+    return "<ul class=\"flags\">" + "".join(f"<li>{e(f)}</li>" for f in flags) + "</ul>"
+
+
+def blank(v, label="NOT VERIFIED"):
+    if v in ("", None):
+        return f'<span class="bad">{label}</span>'
+    return e(v)
+
+
+def url_html(url):
     if not url:
-        return unv("")
-    return f'<a href="{e(url)}" target="_blank" rel="noopener">{e(label or url)}</a>'
+        return '<span class="bad">NOT VERIFIED</span>'
+    return '<a href="' + e(url) + '" target="_blank" rel="noopener">Official page</a>'
 
 
-def social_cell(items):
-    if not items:
-        return unv("")
-    return "<br>".join(
-        f'<a href="{e(i["url"])}" target="_blank" rel="noopener">{e(i["platform"])}</a>' for i in items
-    )
-
-
-def table(headers, rows, cls="data"):
-    """rows: list of lists of pre-rendered HTML strings. Mobile: each cell gets data-label."""
+def table(headers, rows_html, wide=True):
+    cls = "table wide" if wide else "table"
     th = "".join(f"<th>{e(h)}</th>" for h in headers)
-    body = []
-    for r in rows:
-        tds = "".join(f'<td data-label="{e(headers[i])}">{c}</td>' for i, c in enumerate(r))
-        body.append(f"<tr>{tds}</tr>")
-    return (
-        f'<div class="table-wrap"><table class="{cls}"><thead><tr>{th}</tr></thead>'
-        f"<tbody>{''.join(body)}</tbody></table></div>"
-    )
+    return f'<div class="table-wrap"><table class="{cls}"><thead><tr>{th}</tr></thead><tbody>{"".join(rows_html)}</tbody></table></div>'
 
 
-def nav_html(active):
-    items = []
-    for href, label in NAV:
-        cur = ' aria-current="page"' if href == active else ""
-        items.append(f'<a href="{href}"{cur}>{e(label)}</a>')
-    return "<nav class=\"nav\">" + "".join(items) + "</nav>"
-
-
-def page(filename, title, body, intro=""):
-    flagged_banner = ""
-    if filename != "flagged.html":
-        flagged_banner = (
-            '<div class="banner">Flagged items (unverified or conflicting data) are listed on '
-            '<a href="flagged.html">Flagged for Review</a>.</div>'
-        )
-    content = f"""<!doctype html>
+def page(path, title, active, body, desc=""):
+    """All generated pages live in pages/ (one level deep). Nav hrefs are pages-relative."""
+    prefix = "../"
+    nav_items = [
+        ("index.html", "Home"),
+        ("trip-dates.html", "Trip dates"),
+        ("hotels.html", "Hotels"),
+        ("restaurants.html", "Michelin dining"),
+        ("activities.html", "Activities"),
+        ("questions.html", "Questions"),
+        ("suggestions.html", "Suggestions"),
+        ("repo-review.html", "Repo review"),
+        ("flagged.html", "Flagged for Review"),
+        ("sources.html", "Sources"),
+    ]
+    active = active.replace("pages/", "")
+    nav_parts = ['<a href="../index.html">← Main dashboard</a>']
+    for href, label in nav_items:
+        cls = ' class="active"' if href == active else ""
+        nav_parts.append(f'<a href="{href}"{cls}>{e(label)}</a>')
+    nav = "".join(nav_parts)
+    doc = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(title)} | Las Vegas Trip Planner</title>
-<link rel="stylesheet" href="assets/style.css">
+<title>{e(title)} · Vegas3</title>
+<meta name="description" content="{e(desc or 'Las Vegas trip planner: hotels, Michelin dining, activities, questions and flagged items. Every row links to an official source.')}">
+<link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-<header class="top">
-  <a class="brand" href="index.html">Las Vegas Trip Planner</a>
-  <span class="asof">Data as of {e(ACCESSED)}</span>
+<header class="topbar">
+  <div class="brand"><a href="index.html">Vegas3</a><span>Las Vegas trip planner</span></div>
+  <nav class="nav">{nav}</nav>
 </header>
-{nav_html(filename)}
-<main>
-<h1>{e(title)}</h1>
-{('<p class="intro">' + intro + '</p>') if intro else ''}
-{flagged_banner}
+<main class="wrap">
 {body}
 </main>
-<footer>
-<p>Every table row links to an official source. Blank cells show <span class="unv">Unverified</span> and are not estimated.
-Verify before you book. Sources are listed on the <a href="sources.html">Sources</a> page.</p>
+<footer class="footer">
+  <p>Data checked {e(META["access_date"])}. Every table row links to an official source. Blank cells are <span class="bad">NOT VERIFIED</span> and listed on the <a href="flagged.html">Flagged for Review</a> page.</p>
+  <p><a href="{e(META["repo"])}">Repository</a></p>
 </footer>
 </body>
 </html>
 """
-    (DOCS / filename).write_text(content, encoding="utf-8")
+    out = ROOT / path
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(doc, encoding="utf-8")
 
 
-def render_index():
-    summary = load("summary.json")
-    flagged = load("flagged.json")["items"]
-    stat_html = []
-    stats = [
-        ("24", "Las Vegas Michelin distinctions (2026)"),
-        ("4", "Michelin-starred restaurants"),
-        ("8", "Hotels on shortlist"),
-        (str(len(flagged)), "Flagged items for review"),
-    ]
-    for num, label in stats:
-        stat_html.append(f'<div class="stat"><div class="num">{e(num)}</div><div>{e(label)}</div></div>')
-    points = "".join(
-        f'<tr><td data-label="Topic"><strong>{e(p["label"])}</strong></td><td data-label="Summary">{e(p["value"])}</td></tr>'
-        for p in summary["points"]
-    )
-    cards = []
-    card_info = [
-        ("hotels.html", "Hotels", "Shortlist ranked by Michelin restaurants on property. Prices pending."),
-        ("restaurants.html", "Michelin restaurants", "All 24 Las Vegas distinctions with status, hours and sources."),
-        ("activities.html", "Activities & transit", "Red Rock, Valley of Fire, Lake Mead, Hoover Dam, plus transit notes."),
-        ("booking.html", "Dates & booking", "Date options for Feb 15-18 2027 and 7-night stays. Booking timing facts."),
-        ("questions.html", "Questions", "What is answered and what still needs your input."),
-        ("suggestions.html", "Suggestions", "Site and planning improvements. Nothing changes until you approve."),
-        ("flagged.html", "Flagged for Review", "Irregularities and unverified items with source links."),
-        ("sources.html", "Sources", "Every official and secondary source used, with links."),
-    ]
-    for href, title, desc in card_info:
-        cards.append(f'<a class="card" href="{href}"><strong>{e(title)}</strong><span>{e(desc)}</span></a>')
+def pill(label, value, cls=""):
+    return f'<div class="stat {cls}"><div class="stat-v">{e(value)}</div><div class="stat-l">{e(label)}</div></div>'
+
+
+# ---------------- Pages ----------------
+
+def build_home():
+    r = DATA["restaurants"]["rows"]
+    h = DATA["hotels"]["rows"]
+    a = DATA["activities"]["rows"]
     body = f"""
-<div class="stats">{''.join(stat_html)}</div>
-<h2>Executive summary</h2>
-<p class="intro">{e(summary["headline"])}</p>
-<div class="table-wrap"><table class="data"><thead><tr><th>Topic</th><th>Summary</th></tr></thead><tbody>{points}</tbody></table></div>
-<p><strong>Next step:</strong> {e(summary["next_step"])}</p>
-<h2>Pages</h2>
-<div class="cards">{''.join(cards)}</div>
+<section class="hero">
+  <h1>Las Vegas trip plan — dashboard</h1>
+  <p class="lead">Preferred trip: <strong>Mon Feb 15 – Thu Feb 18, 2027</strong> (3 nights). Alternative: 7 nights, Feb 15–22. Two adults. Private bathroom, queen-or-larger bed.</p>
+  <div class="stats">
+    {pill("Michelin distinctions (LV, 2026)", "24")}
+    {pill("Michelin stars (LV, 2026)", "4")}
+    {pill("Hotels reviewed", str(len(h)))}
+    {pill("Hotel 7-night totals verified", "0 of " + str(len(h)), "bad")}
+    {pill("Restaurant hours verified", str(sum(1 for x in r if x["status"] == "Verified")) + " of " + str(len(r)), "warn")}
+    {pill("Items flagged for review", str(len(DATA["flagged"])), "warn")}
+  </div>
+</section>
+
+<section class="card">
+  <h2>Executive summary</h2>
+  <ul class="bullets">
+    <li><strong>Dates.</strong> Feb 15, 2027 is Presidents' Day (a federal holiday) — <a href="{SRC['S14']['url']}" target="_blank" rel="noopener">OPM 2027 holidays</a>. A 3-night stay (Feb 15–18) conflicts with the 1–2 week rule; a 7-night stay (Feb 15–22) meets it. <strong>You need to choose.</strong></li>
+    <li><strong>Michelin in Las Vegas (2026).</strong> Four starred: Joël Robuchon (Two Stars), L'Atelier de Joël Robuchon, Restaurant Guy Savoy, é by José Andrés (One Star each). Three Bib Gourmand. Seventeen Recommended. Thirteen of the 24 are on the Strip (<a href="{SRC['S1']['url']}" target="_blank" rel="noopener">LVCVA</a>).</li>
+    <li><strong>Hotels.</strong> Preliminary ranking by Michelin venues on the Strip: The Venetian/Palazzo (4 Recommended), MGM Grand (2 starred), The Cosmopolitan (1 star + 1 Bib). Four hotels have verified room types (2 queens or king); <strong>no live 7-night prices were verifiable</strong>, so cost columns are blank and flagged.</li>
+    <li><strong>Travel.</strong> Red Rock Canyon is ~30 min from the Strip, requires timed entry (Oct 1–May 31), and has <strong>no public transit</strong> (<a href="{SRC['S16']['url']}" target="_blank" rel="noopener">BLM</a>). The 1-hour bus test has not been run for any pair.</li>
+    <li><strong>Booking timing (official rules only).</strong> Starred restaurants usually release tables 30–60 days out. é takes bookings up to three months ahead. Caesars Palace advertises up to 30% off for stays booked 30+ days ahead, terms apply. The cheapest booking date is <strong>not yet known</strong>.</li>
+    <li><strong>Repo.</strong> Only a README existed. Site built as static HTML from one data file; COORDINATION.md created. Irregularities are listed on the Repo review page.</li>
+  </ul>
+</section>
+
+<section class="grid">
+  <a class="tile" href="trip-dates.html"><h3>Trip dates</h3><p>Options A and B, booking-window facts, holiday check.</p></a>
+  <a class="tile" href="hotels.html"><h3>Hotels</h3><p>Room types, beds, Michelin count, status per hotel.</p></a>
+  <a class="tile" href="restaurants.html"><h3>Michelin dining</h3><p>All 24 Las Vegas distinctions, starred vs listed, hours, links.</p></a>
+  <a class="tile" href="activities.html"><h3>Activities</h3><p>Red Rock, Hoover Dam, shows, hours and travel notes.</p></a>
+  <a class="tile" href="questions.html"><h3>Questions</h3><p>What is answered, what you must decide, and how to find the rest.</p></a>
+  <a class="tile" href="suggestions.html"><h3>Suggestions</h3><p>Ways to improve this site. Choose before anything changes.</p></a>
+  <a class="tile" href="repo-review.html"><h3>Repo review</h3><p>Line-by-line repo review and irregularities.</p></a>
+  <a class="tile warn" href="flagged.html"><h3>Flagged for Review</h3><p>Every unverified value and irregularity, with sources.</p></a>
+</section>
 """
-    page("index.html", "Las Vegas Trip Planner: Dashboard", body)
+    page("pages/index.html", "Home", "index.html", body, desc="Las Vegas trip planner dashboard — Feb 2027 trip, hotels, Michelin dining, activities.")
 
 
-def render_hotels():
-    d = load("hotels.json")
-    headers = ["Rank", "Hotel", "Official site", "Address", "Michelin restaurants on property", "Starred", "Michelin total",
-               "7-night total", "Queen + private bath", "Source"]
-    rows = []
-    for h in d["rows"]:
-        rows.append([
-            e(h["rank"]),
-            f"<strong>{e(h['name'])}</strong>",
-            link(h["url"], "Official site"),
-            unv(h["address"]),
-            e(h["michelin_on_property"]),
-            e(h["starred_count"]),
-            e(h["michelin_total"]),
-            unv(h["rate_7_nights_total"]),
-            unv(h["queen_private_bath"]),
-            src_links(h["src"]),
-        ])
+def build_trip_dates():
+    d = DATA["dates"]
+    facts = [
+        [e(f["item"]), e(f["value"]), src_links([f["source"]]) if f["source"].startswith("S") else e(f["source"]), badge(f["status"])]
+        for f in d["facts"]
+    ]
+    win = [
+        [f'<strong>{e(w["label"])}</strong>', e(w["start"]), e(w["end"]), str(w["nights"]), e(w["note"])]
+        for w in d["windows"]
+    ]
     body = f"""
-<h2>Ranking method</h2>
-<p>{e(d["description"])}</p>
-<h2>Shortlist</h2>
-{table(headers, rows)}
-<h2>Hotel requirements status</h2>
-<ul>
-<li>Private bathroom and queen or larger bed: <strong>Unverified for all 8 hotels</strong> (see Flagged F-14).</li>
-<li>7-night totals for Feb 15-22 2027: <strong>Unverified for all 8 hotels</strong> (see Flagged F-13).</li>
-<li>Cheapest time to book: <strong>Unverified</strong>. Requires dated rate history from official booking pages.</li>
-<li>Travel time under 1 hour by bus/subway: <strong>Unverified</strong>. See RTC trip planner on the Activities page.</li>
+<h1>Trip dates</h1>
+<p class="lead">Allowed window: Feb 15 – Mar 23, 2027. Trip length: 1–2 weeks. Preferred: Feb 15–18, 2027.</p>
+<section class="card"><h2>Date options</h2>
+{table(["Option", "Start", "End", "Nights", "Notes"], [f"<tr>{''.join(f'<td>{c}</td>' for c in row)}</tr>" for row in win])}
+<p class="muted">Option A conflicts with the 1–2 week rule. Choose A or B (see <a href="questions.html">Questions</a>).</p>
+</section>
+<section class="card"><h2>Verified facts and booking-timing rules</h2>
+{table(["Item", "Value", "Source", "Status"], [f"<tr>{''.join(f'<td>{c}</td>' for c in row)}</tr>" for row in facts])}
+</section>
+"""
+    page("pages/trip-dates.html", "Trip dates", "pages/trip-dates.html", body)
+
+
+def build_hotels():
+    H = DATA["hotels"]
+    rows = []
+    for r in H["rows"]:
+        rows.append(
+            "<tr>"
+            f"<td>{r['rank']}</td>"
+            f"<td><strong>{e(r['hotel'])}</strong></td>"
+            f"<td>{blank(r['rooms'], 'NOT VERIFIED')}</td>"
+            f"<td>{blank(r['beds'])}</td>"
+            f"<td>{blank(r['bath'], 'NOT STATED')}</td>"
+            f"<td>{e(r['michelin'])}</td>"
+            f"<td>{blank(r['total'])}</td>"
+            f"<td>{blank(r['book'], 'NOT VERIFIED') if r['book'] else blank('', 'NOT VERIFIED')}</td>"
+            f"<td>{blank(r['transit'])}</td>"
+            f"<td>{src_links(r['sources'])}</td>"
+            f"<td>{badge(r['status'])}{flags_html(r['flags'])}</td>"
+            "</tr>"
+        )
+    body = f"""
+<h1>Hotels</h1>
+<p class="lead">Two adults. Private bathroom and queen-or-larger bed are required. Every value below comes from an official hotel or venue page; blank cells are NOT VERIFIED.</p>
+<section class="card">
+<p><strong>Ranking method:</strong> {e(H["method"])}</p>
+{table(H["columns"], rows)}
+</section>
+<section class="card">
+<h2>What is still needed for hotels</h2>
+<ul class="bullets">
+<li>Live 7-night totals (Feb 15–22, 2027) and 3-night totals (Feb 15–18, 2027) from each hotel's booking page.</li>
+<li>Bathroom wording on each room page (only The Venetian lists it on the fetched page).</li>
+<li>Room data for MGM Grand, Bellagio and Wynn (pages unavailable this run).</li>
+<li>Bus travel times ≤ 1 hour to each venue (RTC Trip Planner).</li>
 </ul>
+</section>
 """
-    page("hotels.html", "Hotels", body,
-         intro="Eight Strip resorts that host Michelin-listed restaurants. Prices and room details are not yet verified.")
+    page("pages/hotels.html", "Hotels", "pages/hotels.html", body)
 
 
-def render_restaurants():
-    d = load("restaurants.json")
-    headers = ["#", "Restaurant", "Michelin status (2026)", "Cuisine", "Area", "Property", "Address", "Hours",
-               "Open Feb 15-18 2027", "Exceptions / notes", "Price for two (total)", "Price level", "Reservations",
-               "Website", "Social (TikTok / YouTube / Instagram)", "Source"]
+def build_restaurants():
+    R = DATA["restaurants"]
     rows = []
-    for r in d["rows"]:
-        rows.append([
-            e(r["rank"]),
-            f"<strong>{e(r['name'])}</strong>",
-            e(r["status"]),
-            unv(r["cuisine"]),
-            unv(r["area"]),
-            unv(r["property"]),
-            unv(r["address"]),
-            unv(r["hours"]),
-            unv(r["open_feb_15_18_2027"]),
-            unv(r["exceptions"]),
-            unv(r["price_couple"]),
-            unv(r["price_level"]),
-            unv(r["reservations"]),
-            link(r["website"], "Official site"),
-            social_cell(r["social"]),
-            src_links(r["src"]),
-        ])
-    # Summary of clusters, computed from the table itself
-    counts = {}
-    for r in d["rows"]:
-        counts.setdefault(r["area"], 0)
-        counts[r["area"]] += 1
-    cluster_rows = [[e(a), e(c)] for a, c in sorted(counts.items(), key=lambda x: -x[1])]
-    star_rows = [[e(r["name"]), e(r["status"]), e(r["property"] or r["area"]), e(r["hours"] or "")]
-                 for r in d["rows"] if r["status"].startswith(("1 ", "2 "))]
+    for i, r in enumerate(R["rows"], 1):
+        star = r["tier"] == "Starred"
+        row_cls = "starred" if star else ""
+        star_mark = "★ " if star else ""
+        if star:
+            tier_html = '<span class="badge star">Starred</span>'
+        else:
+            tier_html = '<span class="badge">' + e(r["tier"]) + " (listed, no star)</span>"
+        rows.append(
+            f'<tr class="{row_cls}">'
+            f"<td>{i}</td>"
+            f'<td><strong>{e(r["name"])}</strong><br><span class="muted">{star_mark}{e(r["distinction"])}</span></td>'
+            f"<td>{tier_html}</td>"
+            f"<td>{e(r['cuisine_area'])}</td>"
+            f"<td>{blank(r['hours'])}</td>"
+            f"<td>{blank(r['price'], 'NOT VERIFIED')}</td>"
+            f"<td>{blank(r['cost'], 'NOT VERIFIED')}</td>"
+            f"<td>{blank(r['social'], 'NOT VERIFIED')}</td>"
+            f'<td><a href="{e(r["url"])}" target="_blank" rel="noopener">Official site</a></td>'
+            f"<td>{src_links(r['sources'])}</td>"
+            f"<td>{badge(r['status'])}{flags_html(r['flags'])}</td>"
+            "</tr>"
+        )
     body = f"""
-<p>{e(d["description"])}</p>
-<h2>Starred restaurants (currently listed with stars)</h2>
-{table(["Restaurant", "Status", "Property / area", "Hours"], star_rows)}
-<h2>Clusters by area (counts from this table)</h2>
-{table(["Area", "Michelin distinctions"], cluster_rows)}
-<h2>All 24 Las Vegas Michelin distinctions</h2>
-<p>Listed = Michelin Recommended. Bib Gourmand and Recommended restaurants are generally walk-in friendly (S01). Starred restaurants usually release tables 30 to 60 days ahead (S01).</p>
-{table(headers, rows)}
+<h1>Michelin dining — Las Vegas (2026)</h1>
+<p class="lead">{e(R["summary"])}</p>
+<section class="card">
+<p class="muted">Starred rows are highlighted. Michelin price symbols ($ to $$$$) are the Michelin category, not a dollar amount. Exact costs for 2 adults are NOT VERIFIED and left blank. Social links are NOT VERIFIED.</p>
+{table(R["columns"], rows)}
+</section>
+<section class="card">
+<h2>Michelin reading guide</h2>
+<ul class="bullets">
+<li><strong>Two Stars:</strong> excellent cooking, worth a detour. Joël Robuchon only.</li>
+<li><strong>One Star:</strong> very good cooking, worth a stop. L'Atelier, Guy Savoy, é.</li>
+<li><strong>Bib Gourmand:</strong> good quality, good value. China Poblano, Esther's Kitchen, Yen Viet Kitchen.</li>
+<li><strong>Recommended:</strong> listed in the guide, no star. 17 venues.</li>
+</ul>
+<p class="muted">Source: <a href="{SRC['S1']['url']}" target="_blank" rel="noopener">LVCVA</a> (official). Primary Michelin pages were not individually verified in this run.</p>
+</section>
 """
-    page("restaurants.html", "Michelin restaurants", body,
-         intro="All 24 Las Vegas distinctions in the 2026 MICHELIN Guide Southwest. Status: 1 or 2 stars, Bib Gourmand, or Recommended (Michelin 'listed').")
+    page("pages/restaurants.html", "Michelin dining", "pages/restaurants.html", body)
 
 
-def render_activities():
-    d = load("activities.json")
-    headers = ["Activity", "Type", "Distance from Strip", "Hours", "Tickets / reservations", "Public transit",
-               "Exceptions", "Feb 15-18 2027", "Official site", "Social", "Source"]
+def build_activities():
+    A = DATA["activities"]
     rows = []
-    for a in d["activities"]:
-        rows.append([
-            f"<strong>{e(a['name'])}</strong>",
-            e(a["type"]),
-            unv(a["distance_from_strip"]),
-            unv(a["hours"]),
-            unv(a["tickets_reservations"]),
-            unv(a["public_transit"]),
-            unv(a["exceptions"]),
-            unv(a["open_feb_15_18_2027"]),
-            link(a["url"], "Official site"),
-            social_cell(a["social"]),
-            src_links(a["src"]),
-        ])
-    t_headers = ["Item", "Claim", "Source type", "Status", "Source"]
-    t_rows = [[e(t["item"]), e(t["claim"]), e(t["source_type"]), e(t["status"]), src_links(t["src"])] for t in d["transit"]]
+    for r in A["rows"]:
+        rows.append(
+            "<tr>"
+            f"<td><strong>{e(r['name'])}</strong></td>"
+            f"<td>{blank(r['hours'])}</td>"
+            f"<td>{blank(r['exceptions'], 'NOT VERIFIED')}</td>"
+            f"<td>{blank(r['travel'])}</td>"
+            f"<td>{blank(r['cost'], 'NOT VERIFIED')}</td>"
+            f"<td>{blank(r['social'], 'NOT VERIFIED')}</td>"
+            f"<td>{url_html(r['url'])}</td>"
+            f"<td>{src_links(r['sources'])}</td>"
+            f"<td>{badge(r['status'])}{flags_html(r['flags'])}</td>"
+            "</tr>"
+        )
     body = f"""
-<p>{e(d["description"])}</p>
-<h2>Activities</h2>
-{table(headers, rows)}
-<h2>Getting around</h2>
-<p>The 1-hour test (by bus or subway) cannot be applied until RTC travel times are checked. Las Vegas has no subway (secondary source only).</p>
-{table(t_headers, t_rows)}
+<h1>Activities</h1>
+<p class="lead">Activities are limited to places with an official page. Travel times are shown only where an official source gives them.</p>
+<section class="card">
+{table(A["columns"], rows)}
+</section>
 """
-    page("activities.html", "Activities & transit", body,
-         intro="Day trips with official sources. A drive or transit time appears only when an official source states it.")
+    page("pages/activities.html", "Activities", "pages/activities.html", body)
 
 
-def render_booking():
-    d = load("booking.json")
-    w = d["trip_window"]
-    opts = [[e(o["label"]), e(o["check_in"]), e(o["check_out"]), e(o["nights"]), e(o["note"])] for o in d["date_options"]]
-    facts = "".join(
-        f"<li>{e(f['fact'])} {src_links(f['src'])}</li>" for f in d["booking_timing_facts"]
+def build_questions():
+    Q = DATA["questions"]
+    ans = "".join(
+        f"<tr><td>{e(x['q'])}</td><td>{e(x['a'])}</td></tr>" for x in Q["answered"]
     )
-    unver = "".join(f"<li>{e(u)}</li>" for u in d["unverified"])
+    need = "".join(
+        f"<tr><td>{i}</td><td>{e(x['q'])}</td><td>{e(x['why'])}</td><td>{e(x['how_to_resolve'])}</td></tr>"
+        for i, x in enumerate(Q["needed"], 1)
+    )
     body = f"""
-<h2>Trip window</h2>
-<p>Earliest {e(w['earliest'])} to latest {e(w['latest'])}. Length {e(w['length_nights'])}. Preferred {e(w['preferred'])}.</p>
-<h2>Date options</h2>
-{table(["Option", "Check-in", "Check-out", "Nights", "Note"], opts)}
-<h2>Booking timing (verified)</h2>
-<ul>{facts}</ul>
-<h2>Still unverified</h2>
-<ul>{unver}</ul>
-<p>Hotel prices and cheapest booking time will be added only from official booking pages, with the date and time of each check.</p>
+<h1>Questions and information gaps</h1>
+<section class="card"><h2>Answered from official sources</h2>
+<div class="table-wrap"><table class="table"><thead><tr><th>Question</th><th>Answer</th></tr></thead><tbody>{ans}</tbody></table></div>
+</section>
+<section class="card"><h2>Still needed before deciding</h2>
+<div class="table-wrap"><table class="table"><thead><tr><th>#</th><th>Question / missing info</th><th>Why it matters</th><th>How to resolve</th></tr></thead><tbody>{need}</tbody></table></div>
+</section>
 """
-    page("booking.html", "Dates & booking", body,
-         intro="Date options inside the Feb 15 to Mar 23 2027 window, plus verified booking-timing facts.")
+    page("pages/questions.html", "Questions", "pages/questions.html", body)
 
 
-def render_questions():
-    d = load("qa.json")
-    ans = [[e(a["q"]), e(a["a"]), src_links(a["src"])] for a in d["answered"]]
-    opn = [[e(q["q"]), e(q["why"]), e(q["discover"]), e(q["owner"])] for q in d["open"]]
+def build_suggestions():
+    rows = "".join(
+        f"<tr><td>{e(s['id'])}</td><td><strong>{e(s['title'])}</strong></td><td>{e(s['detail'])}</td><td>{e(s['effort'])}</td><td>{e(s['needs'])}</td><td><span class=\"badge\">Awaiting your choice</span></td></tr>"
+        for s in DATA["suggestions"]
+    )
     body = f"""
-<h2>Answered (verified)</h2>
-{table(["Question", "Answer", "Source"], ans)}
-<h2>Open (needs information before a decision)</h2>
-<p>Each item says what is missing and how to find it. Items marked You need your input.</p>
-{table(["Question", "Why it matters", "How to find out", "Owner"], opn)}
+<h1>Suggestions</h1>
+<p class="lead">Review each suggestion. <strong>Nothing here has been implemented.</strong> Reply with the IDs you approve (for example, “SG-1, SG-3, SG-7”) and the answers on the Questions page.</p>
+<section class="card">
+<div class="table-wrap"><table class="table wide"><thead><tr><th>ID</th><th>Suggestion</th><th>Detail</th><th>Effort</th><th>Needs from you</th><th>Status</th></tr></thead><tbody>{rows}</tbody></table></div>
+</section>
 """
-    page("questions.html", "Questions", body,
-         intro="What we know, what we still need, and how to get the missing information.")
+    page("pages/suggestions.html", "Suggestions", "pages/suggestions.html", body)
 
 
-def render_suggestions():
-    d = load("suggestions.json")
-    rows = [[e(s["id"]), f"<strong>{e(s['title'])}</strong>", e(s["detail"]), e(s["impact"]), e(s["effort"]),
-             "Awaiting your approval" if s["needs_approval"] else "Not needed"] for s in d["items"]]
+def build_repo_review():
+    rows = "".join(
+        f"<tr><td>{e(x['item'])}</td><td>{e(x['observation'])}</td><td>{src_links([x['source']]) if x['source'].startswith('S') else e(x['source'])}</td><td>{e(x['action'])}</td></tr>"
+        for x in DATA["repo_review"]
+    )
     body = f"""
-<p class="banner">{e(d["status"])}</p>
-{table(["ID", "Suggestion", "Detail", "Impact", "Effort", "Status"], rows)}
-<p>To choose: reply with the IDs you want (for example, SG-01, SG-02). Anything not chosen stays unimplemented.</p>
+<h1>Repo review</h1>
+<p class="lead">Repository <a href="{e(META['repo'])}" target="_blank" rel="noopener">kanlerxz87-cyber/Vegas3</a>, base commit ec27311. The repo had one README and one commit. Items below are irregularities or open points, each with a source.</p>
+<section class="card">
+<div class="table-wrap"><table class="table wide"><thead><tr><th>Item</th><th>Observation</th><th>Source</th><th>Suggested action</th></tr></thead><tbody>{rows}</tbody></table></div>
+</section>
 """
-    page("suggestions.html", "Suggestions", body,
-         intro="Proposed improvements to the site and planning process. Review and choose before any change is made.")
+    page("pages/repo-review.html", "Repo review", "pages/repo-review.html", body)
 
 
-def render_flagged():
-    d = load("flagged.json")
-    rows = [[e(i["id"]), e(i["area"]), e(i["issue"]), src_links(i["src"]), e(i["action"])] for i in d["items"]]
+def build_flagged():
+    rows = "".join(
+        f"<tr><td>{e(x['item'])}</td><td>{e(x['issue'])}</td><td>{src_links([x['source']]) if x['source'].startswith('S') else e(x['source'])}</td></tr>"
+        for x in DATA["flagged"]
+    )
     body = f"""
-<p>{e(d["description"])}</p>
-<p class="banner">Flagged items do not block the merge. Review them after the site is live and tell us what to change.</p>
-{table(["ID", "Area", "Issue", "Source", "Suggested action"], rows)}
+<h1>Flagged for Review</h1>
+<p class="lead">Unverified values, conflicts, and irregularities. These do not block publishing. Each item shows its source (or “—” if none exists) so you can check it.</p>
+<section class="card">
+<div class="table-wrap"><table class="table wide"><thead><tr><th>Item</th><th>Issue</th><th>Source</th></tr></thead><tbody>{rows}</tbody></table></div>
+</section>
 """
-    page("flagged.html", "Flagged for Review", body,
-         intro="Irregularities, conflicts and unverified items, each with source links for manual review.")
+    page("pages/flagged.html", "Flagged for Review", "pages/flagged.html", body)
 
 
-def render_sources():
-    rows = []
-    for s in SOURCES.values():
-        rows.append([e(s["id"]), f"<strong>{e(s['title'])}</strong>", link(s["url"], s["url"]), e(s["publisher"]),
-                     e(s["type"]), e(ACCESSED), e(s["note"])])
-    body = table(["ID", "Title", "Link", "Publisher", "Type", "Accessed", "Notes"], rows)
-    page("sources.html", "Sources", body,
-         intro="Each source used in this build. Type 'official' means a government, resort, restaurant or agency site. 'secondary' means press or reference sites.")
-
-
-def render_repo_review():
-    d = load("repo_review.json")
-    rows = [[e(f["id"]), e(f["item"]), e(f["finding"]), e(f["status"]), e(f["action"])] for f in d["findings"]]
+def build_sources():
+    rows = "".join(
+        f"<tr><td>{e(k)}</td><td>{e(v['label'])}</td><td>{e(v['type'])}</td><td><a href=\"{e(v['url'])}\" target=\"_blank\" rel=\"noopener\">{e(v['url'])}</a></td></tr>"
+        for k, v in SRC.items()
+    )
     body = f"""
-<p>{e(d["scope"])}</p>
-{table(["ID", "Item", "Finding", "Status", "Action"], rows)}
+<h1>Sources</h1>
+<p class="lead">All sources accessed {e(META['access_date'])}. Official sources are preferred. S1 is LVCVA (an official destination marketing organization) and was used for the Michelin list. Secondary news sites were used only for cross-checking and are not cited for any value.</p>
+<section class="card">
+<div class="table-wrap"><table class="table wide"><thead><tr><th>ID</th><th>Title</th><th>Type</th><th>Link</th></tr></thead><tbody>{rows}</tbody></table></div>
+</section>
 """
-    page("repo-review.html", "Repo review", body,
-         intro="Review of the repository state, with irregularities flagged for review.")
+    page("pages/sources.html", "Sources", "pages/sources.html", body)
+
+
+def write_assets():
+    css = """
+:root{--ink:#1d2433;--muted:#5d6678;--line:#e3e7ef;--bg:#f6f7fb;--card:#fff;--brand:#1f4fd1;--ok:#11794a;--okbg:#e5f6ee;--warn:#8a5a00;--warnbg:#fff4da;--bad:#b42318;--badbg:#fdecea;--star:#7a4b00;--starbg:#fff1c8}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--brand)}
+.topbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;padding:10px 16px}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand a{font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+.brand span{color:var(--muted);font-size:13px}
+.nav{display:flex;gap:6px;overflow-x:auto;margin-top:8px;padding-bottom:4px}
+.nav a{white-space:nowrap;padding:6px 10px;border-radius:999px;text-decoration:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);font-size:14px}
+.nav a.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.wrap{max-width:1200px;margin:0 auto;padding:16px}
+h1{font-size:26px;margin:8px 0 6px}
+h2{font-size:19px;margin:0 0 10px}
+h3{margin:0 0 4px;font-size:17px}
+.lead{color:var(--muted);margin-top:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.stat{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fbfcfe}
+.stat-v{font-size:22px;font-weight:700}
+.stat-l{color:var(--muted);font-size:13px}
+.stat.bad .stat-v{color:var(--bad)}
+.stat.warn .stat-v{color:var(--warn)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+.tile{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;text-decoration:none;color:var(--ink)}
+.tile:hover{border-color:var(--brand)}
+.tile.warn{border-color:#e7c46b;background:#fffaf0}
+.tile p{margin:0;color:var(--muted);font-size:14px}
+.bullets li{margin:6px 0}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px;background:#fff}
+.table{border-collapse:collapse;width:100%;font-size:14px}
+.table.wide{min-width:900px}
+.table th,.table td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.table th{background:#f2f5fb;position:sticky;top:0;font-weight:600}
+.table tr.starred td{background:#fffbea}
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;background:#eef1f7;color:var(--ink);white-space:nowrap}
+.badge.ok{background:var(--okbg);color:var(--ok)}
+.badge.warn{background:var(--warnbg);color:var(--warn)}
+.badge.bad{background:var(--badbg);color:var(--bad)}
+.badge.star{background:var(--starbg);color:var(--star)}
+.bad{color:var(--bad);font-weight:600}
+.muted{color:var(--muted)}
+.flags{margin:6px 0 0;padding-left:18px;font-size:12.5px;color:var(--muted)}
+.footer{max-width:1200px;margin:24px auto;padding:0 16px 32px;color:var(--muted);font-size:13px}
+@media (max-width:640px){
+  body{font-size:15px}
+  h1{font-size:22px}
+  .wrap{padding:10px}
+  .card{padding:12px}
+  .table{font-size:13px}
+}
+"""
+    (ROOT / "assets").mkdir(exist_ok=True)
+    (ROOT / "assets" / "style.css").write_text(css.strip() + "\n", encoding="utf-8")
+    (ROOT / ".nojekyll").write_text("", encoding="utf-8")
 
 
 def main():
-    DOCS.mkdir(exist_ok=True)
-    (DOCS / "assets").mkdir(exist_ok=True)
-    (DOCS / ".nojekyll").write_text("", encoding="utf-8")
-    render_index()
-    render_hotels()
-    render_restaurants()
-    render_activities()
-    render_booking()
-    render_questions()
-    render_suggestions()
-    render_flagged()
-    render_sources()
-    render_repo_review()
-    print("built", len(NAV), "pages into", DOCS)
+    write_assets()
+    build_home()
+    build_trip_dates()
+    build_hotels()
+    build_restaurants()
+    build_activities()
+    build_questions()
+    build_suggestions()
+    build_repo_review()
+    build_flagged()
+    build_sources()
+    print("Built site into", ROOT)
 
 
 if __name__ == "__main__":

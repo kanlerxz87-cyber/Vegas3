@@ -19,19 +19,15 @@ The MICHELIN Guide directory and linked individual pages are linked inline. The 
 
 Configure GitHub Pages for the `main` branch, repository root (`/(root)`) in Settings → Pages. This is a plain static site and requires no build command or dependencies. Review all date-sensitive details and replace blank fields only after confirming each against an official source.
 
-## Detailed subpages (built from verified data)
+## Full planner site (subpages and data)
 
-The subpages below are generated from `data/*.json` by `scripts/build_site.py` and checked by `scripts/verify_site.py`. Every table row cites an official source. Blank values read **Unverified** and are never estimated.
+The detailed planner (hotels, all 24 Michelin distinctions, activities, questions, suggestions, repo review, Flagged for Review and sources) lives in `pages/`. Start at **`pages/index.html`** (also linked from the dashboard above).
 
-- `docs/index.html` - subpage home
-- `docs/hotels.html` - 8-hotel shortlist ranked by Michelin restaurants on property
-- `docs/restaurants.html` - all 24 Las Vegas Michelin distinctions (4 starred, 3 Bib Gourmand, 17 Recommended)
-- `docs/activities.html` - day trips and transit notes
-- `docs/booking.html` - date options and booking-timing facts
-- `docs/questions.html` - answered and open questions
-- `docs/suggestions.html` - proposed improvements (not implemented until approved)
-- `docs/flagged.html` - Flagged for Review (irregularities and unverified items)
-- `docs/sources.html` - all sources with links
-- `docs/repo-review.html` - repository review
+- `data/site.json` — single source for every row; each row cites official source IDs, or is blank and flagged.
+- `scripts/build_site.py` — regenerates `pages/*.html` (standard library only).
+- `scripts/verify_site.py` — checks row sourcing, source-ID integrity, Michelin tier counts (4 starred / 3 Bib / 17 Recommended) and that every internal link resolves.
 
-Rebuild: `python3 scripts/build_site.py` then verify: `python3 scripts/verify_site.py`.
+```bash
+python3 scripts/build_site.py
+python3 scripts/verify_site.py
+```
