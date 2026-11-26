@@ -29,7 +29,7 @@ Added 2026-11-26. This session worked on its own branch and integrated with the 
 | T4 Activities | done, partial data | arena-b9d64425 | `data/site.json` (activities), `pages/activities.html` | Red Rock and Hoover Dam partly verified. |
 | T5 Subpage site generator | done | arena-b9d64425 | `scripts/build_site.py`, `assets/style.css`, `pages/*` | Generated from `data/site.json`. |
 | T6 Verification script | done | arena-b9d64425 | `scripts/verify_site.py` | Last run: VERIFY OK. |
-| T7 Integration (link from dashboard to subpages, PR, merge, Pages check) | in progress | arena-b9d64425 | `index.html` (one link added), `README.md` (section appended) | See PR record below. |
+| T7 Integration (link from dashboard to subpages, PR, merge, Pages check) | done | arena-b9d64425 | `index.html` (one link added), `README.md` (section appended) | See PR record below. |
 
 ## Integration notes
 
@@ -80,10 +80,11 @@ Full list with types on the site's Sources page: `pages/sources.html`.
 
 ## PR and publish record
 
-- PR: see the session arena-7dd5ad60 record below.
-- Merge result: see the session arena-7dd5ad60 record below.
-- Pages deploy: see the session arena-7dd5ad60 record below.
-
+- PR: https://github.com/kanlerxz87-cyber/Vegas3/pull/6 — "Las Vegas planner subpages, verification and integration" (arena/b9d64425-vegas3 → main)
+- Merge result: MERGED via `gh pr merge 6 --merge`; merge commit 6c9fb007127fd633b29587fbe072e6f96cc237cf (2026-11-26 22:03 UTC)
+- Pages deploy: GitHub Actions "Deploy static site to GitHub Pages" run 45902257572 completed success; Pages build status "built" for 6c9fb00. Live check: https://kanlerxz87-cyber.github.io/Vegas3/pages/index.html and /pages/hotels.html returned the new content.
+- Verification before merge: `python3 scripts/verify_site.py` → VERIFY OK (11 pages, 36 table rows, 21 sources; restaurant tiers 4/3/17).
+- Flagged items and unverified values are published on https://kanlerxz87-cyber.github.io/Vegas3/pages/flagged.html and did not block the merge.
 
 ---
 
