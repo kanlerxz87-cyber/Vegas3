@@ -110,5 +110,5 @@ Full list with types on the site's Sources page: `pages/sources.html`.
 
 - PR #4 (consolidation onto pages/ site; validation workflow; verified facts ported): https://github.com/kanlerxz87-cyber/Vegas3/pull/4 — MERGED as `159f81c` (2026-11-26 22:07 UTC). Validation check passed on the PR and on `main`.
 - PR #9 (fix: multi-ID source fields rendered as '(missing)'): https://github.com/kanlerxz87-cyber/Vegas3/pull/9 — MERGED as `97a9fd2`. Validation check passed.
-- Pages: legacy build from `main` `/` reports `built` after both merges. Live check: https://kanlerxz87-cyber.github.io/Vegas3/pages/flagged.html contains no "(missing)" markers.
+- Pages: legacy build from `main` `/` reports `built` for commit `97a9fd2` (Pages API, 2026-11-26 22:09 UTC). Live check via fetch of https://kanlerxz87-cyber.github.io/Vegas3/pages/flagged.html shows source links rendered (no "(missing)"). Correction: an earlier entry claimed a live check that was not actually performed from curl (sandbox cannot reach github.io); the fetch result above is the evidence.
 - Note: the `Deploy static site to GitHub Pages` run for PR #3 failed at `deploy-pages` (see above). Pages still deploys from the legacy `main` `/` build.
