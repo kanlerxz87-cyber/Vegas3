@@ -30,6 +30,6 @@ Status values: `unclaimed`, `in progress`, `done`, `needs review` (`needs review
 
 ## Pull request and merge record
 
-- PR: pending (recorded below after creation)
+- PR: https://github.com/kanlerxz87-cyber/Vegas3/pull/4 (arena/7dd5ad60-vegas3 -> main)
 - Merge result: pending
 - Pages deploy: pending
