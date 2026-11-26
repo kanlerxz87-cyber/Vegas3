@@ -85,3 +85,30 @@ Full list with types on the site's Sources page: `pages/sources.html`.
 - Pages deploy: GitHub Actions "Deploy static site to GitHub Pages" run 45902257572 completed success; Pages build status "built" for 6c9fb00. Live check: https://kanlerxz87-cyber.github.io/Vegas3/pages/index.html and /pages/hotels.html returned the new content.
 - Verification before merge: `python3 scripts/verify_site.py` → VERIFY OK (11 pages, 36 table rows, 21 sources; restaurant tiers 4/3/17).
 - Flagged items and unverified values are published on https://kanlerxz87-cyber.github.io/Vegas3/pages/flagged.html and did not block the merge.
+
+---
+
+# Session arena/870aacb9 (branch `arena/870aacb9-vegas3`) — evidence review handoff
+
+Status: research and integration review completed; no changes to the `pages/` site/data were made because that scope was already integrated by session `arena-b9d64425` in PR #6. An early draft on this branch duplicated root-level pages; after PR #6 merged, the branch was synchronized to main and the current PR diff contains only this coordination handoff, preserving the live implementation.
+
+## Findings and source checks (2026-11-26)
+
+- MICHELIN's official 2026 Southwest announcement: https://www.michelin.com/en/publications/products-and-services/michelin-guide-reveals-first-ever-southwest-restaurant-selection-in-the-u-s. It says Las Vegas has four starred restaurants: Restaurant de Joël Robuchon (Two Stars), and L’Atelier de Joël Robuchon, é by José Andrés, and Guy Savoy (One Star each). That is **five stars across four restaurants**. The live planner hub currently labels a count of “4 Michelin stars”; this should be changed to “4 starred restaurants” or the aggregate should be 5. Request logged for the integration owner; this branch does not edit their page files.
+- Direct MGM room source: MGM Two Queen, 446 sq ft, two queens, marble-adorned bathroom: https://mgmgrand.mgmresorts.com/en/hotel/mgm-two-queen.html. Direct Cosmopolitan City Room Queen: 460 sq ft, two queen beds, large bathroom: https://cosmopolitanlasvegas.mgmresorts.com/en/hotel/city-room.html. Caesars room directory: https://www.caesars.com/caesars-palace/hotel.rooms. Room descriptions do not explicitly say “private/en-suite”; confirm before booking. No dated Feb. 2027 final price was obtained.
+- Official restaurant pages checked: Joël Robuchon https://mgmgrand.mgmresorts.com/en/restaurants/joel-robuchon-french-restaurant.html; L’Atelier https://mgmgrand.mgmresorts.com/en/restaurants/latelier-joel-robuchon-french-restaurant.html; é https://cosmopolitanlasvegas.mgmresorts.com/en/restaurants/e-by-jose-andres.html; China Poblano https://cosmopolitanlasvegas.mgmresorts.com/en/restaurants/china-poblano.html; Guy Savoy https://www.caesars.com/caesars-palace/restaurants/restaurant-guy-savoy; COTE https://www.venetianlasvegas.com/dining/restaurants/cote.html; Mott 32 https://www.venetianlasvegas.com/dining/restaurants/mott-32.html.
+- Michael Mina operator page: https://bellagio.mgmresorts.com/en/restaurants/michael-mina.html. It displayed the venue as temporarily closed / closed each day at review time and a $295++ tasting menu/person. That is $590++ for two by arithmetic only, but do not recommend or reserve until reopening and 2027 menu availability are confirmed.
+- Bellagio fountain official schedule and weather exception: https://bellagio.mgmresorts.com/en/entertainment/fountains-of-bellagio.html. Conservatory page (seasonal display; hours not established from the source capture): https://bellagio.mgmresorts.com/en/entertainment/conservatory-botanical-garden.html. KÀ weekly schedule and dark-date page: https://mgmgrand.mgmresorts.com/en/entertainment/ka-cirque-du-soleil-show.html.
+- RTC official fares https://rtcws.rtcsnv.com/mobile/geoFares.html and route guide https://rtcws.rtcsnv.com/routepdf/transitguide.pdf show current Strip/Downtown fare products; no official route-specific journey times from a selected hotel to each venue were established.
+- Social profile links found in platform search (not represented as verified hotel/operator booking sources): MGM Grand https://www.instagram.com/mgmgrand/; Cosmopolitan https://www.instagram.com/cosmopolitan_lv/; Caesars Palace https://www.instagram.com/caesarspalace/; Bellagio https://www.instagram.com/bellagio/; Guy Savoy https://www.instagram.com/guysavoylasvegas/; Joël Robuchon https://www.instagram.com/joelrobuchon.lasvegas/; L’Atelier https://www.instagram.com/latelierjoelrobuchonlv/; é https://www.instagram.com/ebyjoseandres/; Mott 32 https://www.instagram.com/mott32vegas/; KÀ https://www.instagram.com/ka.cirquedusoleil/. No matching venue account was confirmed for China Poblano, COTE, or Michael Mina in this review.
+
+## Integration and deployment verified
+
+- PR #6 (the detailed subpage integration): https://github.com/kanlerxz87-cyber/Vegas3/pull/6 — merged 2026-11-26; merge commit `6c9fb007127fd633b29587fbe072e6f96cc237cf`.
+- Main deployment workflow run `45902257572` completed successfully. GitHub Pages API reported status `built`; public URL: https://kanlerxz87-cyber.github.io/Vegas3/ . The public landing page and linked planner hub at https://kanlerxz87-cyber.github.io/Vegas3/pages/index.html were fetched successfully.
+- The live integrated site passed `python3 scripts/verify_site.py`: 11 pages, 36 table rows, 21 sources, with restaurant tier counts 4 / 3 / 17.
+- PR #5 was initially drafted as a competing root-site redesign. Its current branch diff is now coordination-only to avoid conflicting with the already-published PR #6 integration; source audit and correction request are recorded here.
+
+## Remaining flagged decisions
+
+No independently verified official 7-night 2027 checkout total, cheapest booking day, private-bath confirmation, or ≤60-minute transit route comparison is available. Keep those fields blank/flagged. The Feb. 15–18 preferred window remains three nights and conflicts with the requested 1–2 week duration.
