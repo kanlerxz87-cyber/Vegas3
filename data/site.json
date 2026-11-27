@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "Vegas3 — Las Vegas Trip Planner",
-    "access_date": "2026-11-26",
-    "timezone_note": "All dates and facts checked on 2026-11-26 (UTC) unless a row says otherwise.",
+    "access_date": "2026-11-27",
+    "timezone_note": "Michelin directory and individual venue pages checked 2026-11-26 to 2026-11-27 (UTC); other facts as marked per row.",
     "repo": "https://github.com/kanlerxz87-cyber/Vegas3",
     "site": "https://kanlerxz87-cyber.github.io/Vegas3/"
   },
@@ -108,7 +108,7 @@
       "type": "Official GitHub"
     },
     "S21": {
-      "label": "MICHELIN Guide — restaurant directory (reachable; Las Vegas listings not individually verified)",
+      "label": "MICHELIN Guide — Las Vegas restaurant directory (primary; reached 2026-11-26; 24 listings with distinctions and MICHELIN price symbols verified against the directory)",
       "url": "https://guide.michelin.com/us/en/restaurants",
       "type": "Official Michelin Guide"
     },
@@ -186,6 +186,91 @@
       "label": "Nomado: Getting around Las Vegas",
       "url": "https://www.nomadotravel.app/en/guides/getting-around-las-vegas",
       "type": "secondary"
+    },
+    "S37": {
+      "label": "MICHELIN Guide — Restaurant Guy Savoy, Las Vegas (One Star; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/guy-savoy-las-vegas",
+      "type": "Official Michelin Guide"
+    },
+    "S38": {
+      "label": "MICHELIN Guide — YEN Viet Kitchen, Las Vegas (Bib Gourmand; hours, price)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/yen-viet-kitchen",
+      "type": "Official Michelin Guide"
+    },
+    "S39": {
+      "label": "MICHELIN Guide — Anima by Edo, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/anima-by-edo",
+      "type": "Official Michelin Guide"
+    },
+    "S40": {
+      "label": "MICHELIN Guide — Bouchon, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/bouchon-1250929",
+      "type": "Official Michelin Guide"
+    },
+    "S41": {
+      "label": "MICHELIN Guide — Estiatorio Milos, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/estiatorio-milos-1250934",
+      "type": "Official Michelin Guide"
+    },
+    "S42": {
+      "label": "MICHELIN Guide — Gymkhana Las Vegas, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/gymkhana-las-vegas",
+      "type": "Official Michelin Guide"
+    },
+    "S43": {
+      "label": "MICHELIN Guide — Kame Omakase, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/kame-omakase",
+      "type": "Official Michelin Guide"
+    },
+    "S44": {
+      "label": "MICHELIN Guide — Lamaii, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/lamaii",
+      "type": "Official Michelin Guide"
+    },
+    "S45": {
+      "label": "MICHELIN Guide — Michael Mina, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/michael-mina-1250931",
+      "type": "Official Michelin Guide"
+    },
+    "S46": {
+      "label": "MICHELIN Guide — Mott 32, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/mott-32-1250930",
+      "type": "Official Michelin Guide"
+    },
+    "S47": {
+      "label": "MICHELIN Guide — Partage, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/partage-1201408",
+      "type": "Official Michelin Guide"
+    },
+    "S48": {
+      "label": "MICHELIN Guide — Pho Ga Bac Bac, Las Vegas (Recommended; hours as listed, price)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/pho-ga-bac-bac",
+      "type": "Official Michelin Guide"
+    },
+    "S49": {
+      "label": "MICHELIN Guide — Ping Pang Pong, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/ping-pang-pong",
+      "type": "Official Michelin Guide"
+    },
+    "S50": {
+      "label": "MICHELIN Guide — Sparrow + Wolf, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/sparrow-wolf",
+      "type": "Official Michelin Guide"
+    },
+    "S51": {
+      "label": "MICHELIN Guide — Stubborn Seed Las Vegas, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/stubborn-seed-las-vegas",
+      "type": "Official Michelin Guide"
+    },
+    "S52": {
+      "label": "MICHELIN Guide — Wing Lei, Las Vegas (Recommended; hours, price, address)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/wing-lei-1250924",
+      "type": "Official Michelin Guide"
+    },
+    "S53": {
+      "label": "MICHELIN Guide — Esther's Kitchen, Las Vegas (Bib Gourmand; price, address; no hours listed)",
+      "url": "https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurant/esther-s-kitchen",
+      "type": "Official Michelin Guide"
     }
   },
   "dates": {
@@ -487,6 +572,7 @@
         ],
         "status": "Verified",
         "flags": [
+          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -497,7 +583,7 @@
         "tier": "Starred",
         "cuisine_area": "French · The Strip · MGM Grand, 3799 S Las Vegas Blvd",
         "hours": "Mon & Thu–Sun 5:00–9:30 PM; closed Tue & Wed",
-        "price": "$$$",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://mgmgrand.mgmresorts.com/en/restaurants/latelier-joel-robuchon-french-restaurant.html",
@@ -507,9 +593,9 @@
         ],
         "status": "Verified",
         "flags": [
+          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
-          "Social links not verified",
-          "Day pattern (open Mon, closed Tue-Wed) is unusual; confirm by phone 702.891.7358 (official page)."
+          "Social links not verified"
         ]
       },
       {
@@ -528,29 +614,27 @@
         ],
         "status": "Verified",
         "flags": [
+          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
-          "Social links not verified",
-          "Seats only 9 at the bar (official page)",
-          "Online reservations open up to 3 months ahead (official). Two seatings nightly. Closed Mon (official)."
+          "Social links not verified"
         ]
       },
       {
         "name": "Restaurant Guy Savoy",
         "distinction": "One MICHELIN Star",
         "tier": "Starred",
-        "cuisine_area": "French · The Strip",
-        "hours": "Day-by-day hours NOT verified (page showed 'Closed · Opens 5:00 PM' only)",
+        "cuisine_area": "French · The Strip · Caesars Palace, 3570 Las Vegas Blvd. S., Las Vegas, NV 89109",
+        "hours": "Mon closed; Tue–Sat 5:00–9:00 PM; Sun closed (official MICHELIN Guide page)",
         "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://www.caesars.com/caesars-palace/restaurants/restaurant-guy-savoy",
         "sources": [
-          "S5",
+          "S37",
           "S1"
         ],
-        "status": "Partial",
+        "status": "Verified",
         "flags": [
-          "Hours not verified",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -572,6 +656,7 @@
         ],
         "status": "Verified",
         "flags": [
+          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -580,9 +665,9 @@
         "name": "Esther's Kitchen",
         "distinction": "Bib Gourmand",
         "tier": "Bib Gourmand",
-        "cuisine_area": "Italian · Downtown · 1131 S Main St",
+        "cuisine_area": "Italian · Downtown · 1131 S Main St · 1131 S. Main St., Las Vegas, NV 89104 (Downtown Arts District)",
         "hours": "NOT verified (official homepage shows no hours)",
-        "price": "",
+        "price": "$$",
         "cost": "",
         "social": "",
         "url": "https://www.estherslv.com/",
@@ -593,8 +678,7 @@
         ],
         "status": "Unverified",
         "flags": [
-          "Hours not verified",
-          "Price level not verified",
+          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -604,19 +688,17 @@
         "distinction": "Bib Gourmand",
         "tier": "Bib Gourmand",
         "cuisine_area": "Vietnamese · Off-Strip · 3575 S Decatur Blvd, Ste 101",
-        "hours": "NOT verified (official homepage shows no hours)",
-        "price": "",
+        "hours": "Mon 10:00 AM–9:00 PM; Tue closed; Wed–Sun 10:00 AM–9:00 PM (official MICHELIN Guide page)",
+        "price": "$$",
         "cost": "",
         "social": "",
         "url": "https://www.yenvietkitchen.com/",
         "sources": [
-          "S8",
-          "S1",
-          "S22"
+          "S38",
+          "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Hours not verified",
           "Price level not verified",
           "Exact cost not verified",
           "Social links not verified"
@@ -626,38 +708,40 @@
         "name": "Anima by EDO",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Spanish · Off-Strip",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Spanish · Off-Strip · 9205 W. Russell Rd., #185, Las Vegas, NV 89148 (off-Strip)",
+        "hours": "Daily 5:00–9:00 PM (official MICHELIN Guide page)",
+        "price": "$$$",
         "cost": "",
         "social": "",
         "url": "https://animabyedo.com/",
         "sources": [
+          "S39",
           "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified"
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Bouchon",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "French · The Strip",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "French · The Strip · The Venetian Resort & Casino, 3355 Las Vegas Blvd. S., Las Vegas, NV 89109",
+        "hours": "Mon–Wed 5:00–10:00 PM; Thu 8:00 AM–1:00 PM & 5:00–10:00 PM; Fri–Sat 8:00 AM–2:00 PM & 5:00–10:00 PM; Sun 8:00 AM–2:00 PM & 5:00–10:00 PM (official MICHELIN Guide page)",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://www.venetianlasvegas.com/restaurants/bouchon.html",
         "sources": [
+          "S40",
           "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified"
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
@@ -666,7 +750,7 @@
         "tier": "Recommended",
         "cuisine_area": "Korean steakhouse · The Strip",
         "hours": "Mon–Thu 5:00–11:00 PM; Fri–Sat 4:30 PM–12:00 AM; Sun 5:00–11:00 PM",
-        "price": "$$$",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://www.venetianlasvegas.com/dining/restaurants/cote.html",
@@ -676,7 +760,7 @@
         ],
         "status": "Verified",
         "flags": [
-          "Irregularity: venue marketing calls it the 'first-ever Michelin-starred Korean BBQ restaurant'; LVCVA lists COTE Las Vegas as Recommended only (not starred). Confirm before quoting.",
+          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -685,40 +769,40 @@
         "name": "Estiatorio Milos",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Greek seafood · The Strip",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Greek seafood · The Strip · The Venetian Las Vegas, 3355 S. Las Vegas Blvd., Las Vegas, NV 89109",
+        "hours": "Mon–Thu 11:30 AM–3:00 PM & 5:00–10:30 PM; Fri–Sat 11:30 AM–3:00 PM & 5:00–11:00 PM; Sun 11:30 AM–3:00 PM & 5:00–10:30 PM (official MICHELIN Guide page)",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://www.venetianlasvegas.com/restaurants/estiatorio-milos.html",
         "sources": [
-          "S1",
-          "S23"
+          "S41",
+          "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified",
-          "Las Vegas Magazine lists it as a Bib Gourmand; CVA lists it as Recommended (conflict; CVA used)."
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Gymkhana",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Indian · The Strip (ARIA)",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Indian · The Strip (ARIA) · ARIA Resort & Casino, 3730 S. Las Vegas Blvd., Las Vegas, NV 89158",
+        "hours": "Mon–Thu 5:00–10:00 PM; Fri–Sat 5:00–10:30 PM; Sun 5:00–10:00 PM (official MICHELIN Guide page)",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://aria.mgmresorts.com/en/restaurants/gymkhana.html",
         "sources": [
+          "S42",
           "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified"
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
@@ -727,7 +811,7 @@
         "tier": "Recommended",
         "cuisine_area": "Sushi · Chinatown · 5040 Spring Mountain Rd",
         "hours": "Daily 5:30–9:00 PM (per official site post); reservation only",
-        "price": "",
+        "price": "$$$$",
         "cost": "",
         "social": "Instagram post linked from official site (account handle not verified): https://www.instagram.com/p/DgF3xboF22x/",
         "url": "https://kabutolv.com/",
@@ -737,29 +821,29 @@
         ],
         "status": "Partial",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified",
-          "Reservation only (official). Official post notes a closure when no schedule is available that date."
+          "Hours not verified (Michelin Guide page and official homepage publish none)",
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Kame Omakase",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Omakase · Chinatown",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Omakase · Chinatown · 3616 W. Spring Mountain Rd., Ste. 103, Las Vegas, NV 89102 (Chinatown)",
+        "hours": "Daily two seatings: 5:30–7:30 PM and 8:00–10:00 PM (official MICHELIN Guide page)",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://www.kameomakase.com/",
         "sources": [
-          "S1",
-          "S25"
+          "S43",
+          "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified"
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
@@ -767,118 +851,122 @@
         "distinction": "Recommended",
         "tier": "Recommended",
         "cuisine_area": "Thai · Off-Strip · 4480 Spring Mountain Rd #700 (Henderson: 2645 St. Rose Pkwy #150)",
-        "hours": "NOT verified",
-        "price": "",
+        "hours": "Mon–Wed 11:00 AM–12:00 AM; Thu–Sun 11:00 AM–2:00 AM (official MICHELIN Guide page)",
+        "price": "$$",
         "cost": "",
         "social": "",
         "url": "https://www.lamaiilv.com/",
         "sources": [
-          "S1",
-          "S26"
+          "S44",
+          "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified",
-          "Official site says 'Michelin Guide Selected 2026'; CVA lists Recommended (same tier)."
+          "Official site says 'Michelin Guide Selected 2026'; CVA lists Recommended (same tier).",
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Michael Mina",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Seafood · The Strip (Bellagio)",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Seafood · The Strip (Bellagio) · Bellagio Hotel & Casino, 3600 S. Las Vegas Blvd., Las Vegas, NV 89109",
+        "hours": "Mon closed; Tue–Sat 5:00–9:30 PM; Sun closed (official MICHELIN Guide page)",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://bellagio.mgmresorts.com/en/restaurants/michael-mina.html",
         "sources": [
+          "S45",
           "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified"
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Mott 32",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Cantonese · The Strip (Palazzo)",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Cantonese · The Strip (Palazzo) · The Palazzo at The Venetian, 3325 S. Las Vegas Blvd., Las Vegas, NV 89109",
+        "hours": "Mon–Fri 11:00 AM–2:30 PM & 5:00–10:00 PM; Sat–Sun 10:30 AM–2:30 PM & 5:00–10:00 PM (official MICHELIN Guide page)",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://www.venetianlasvegas.com/dining/restaurants/mott-32.html",
         "sources": [
-          "S18",
+          "S46",
           "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Hours, cost, social not verified",
-          "Property conflict: CVA lists it 'at The Palazzo'; linked page is on the Venetian dining site."
+          "Property conflict: CVA lists it 'at The Palazzo'; linked page is on the Venetian dining site.",
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Partage",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "French · Chinatown",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "French · Chinatown · 3839 Spring Mountain Rd., Las Vegas, NV 89102 (Chinatown)",
+        "hours": "Mon closed; Tue–Sat 5:00–8:30 PM; Sun closed (official MICHELIN Guide page)",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://partage.vegas/",
         "sources": [
-          "S1",
-          "S27"
+          "S47",
+          "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified",
-          "Tasting menus of 5, 7 or 9 courses. Cannot accommodate dairy-free, vegan, vegetarian, celiac, onion or garlic-free diets (official). 12-seat private room (official)."
+          "Tasting menus of 5, 7 or 9 courses. Cannot accommodate dairy-free, vegan, vegetarian, celiac, onion or garlic-free diets (official). 12-seat private room (official).",
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Pho Ga Bac Bac",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Vietnamese · Chinatown",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Vietnamese · Chinatown · 3775 Spring Mountain Rd., Las Vegas, NV 89102 (Chinatown)",
+        "hours": "Listed as open daily 12:00 AM–12:00 AM on the official MICHELIN Guide page (appears to be a placeholder — confirm with the venue before visiting)",
+        "price": "$",
         "cost": "",
         "social": "",
         "url": "https://bestchickenpho.com/",
         "sources": [
+          "S48",
           "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified"
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Ping Pang Pong",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Chinese · Off-Strip (Gold Coast)",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Chinese · Off-Strip (Gold Coast) · Gold Coast Hotel and Casino, 4000 W. Flamingo Rd., Las Vegas, NV 89103 (off-Strip)",
+        "hours": "Daily 10:00 AM–3:00 AM (official MICHELIN Guide page)",
+        "price": "$$",
         "cost": "",
         "social": "",
         "url": "https://goldcoast.boydgaming.com/dine/gc-ping-pang-pong",
         "sources": [
+          "S49",
           "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified"
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
@@ -887,7 +975,7 @@
         "tier": "Recommended",
         "cuisine_area": "Barbecue · Downtown · 1327 S Main St",
         "hours": "Tue–Thu 11 AM–9 PM; Fri–Sat 11 AM–10 PM; Sun 11 AM–9 PM; Monday not listed (official site: 'Open Tue–Sun')",
-        "price": "",
+        "price": "$$",
         "cost": "",
         "social": "Instagram (official site): https://www.instagram.com/soulbellybbqlv",
         "url": "https://www.soulbellybbq.com/",
@@ -897,70 +985,71 @@
         ],
         "status": "Partial",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified",
-          "Michelin recognition applies to the Main Street location only (official). Monday not listed on official site."
+          "Hours not verified (Michelin Guide page and official homepage publish none)",
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Sparrow + Wolf",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "New American · Chinatown",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "New American · Chinatown · 4480 Spring Mountain Rd., #100, Las Vegas, NV 89102 (Chinatown)",
+        "hours": "Daily 5:00–10:00 PM (official MICHELIN Guide page)",
+        "price": "$$$",
         "cost": "",
         "social": "",
         "url": "https://www.sparrowandwolflv.com/",
         "sources": [
-          "S1",
-          "S29"
+          "S50",
+          "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified",
           "Credit card required to hold a reservation; $25/guest charge for cancellation inside 24 h; max 4 guests online (official).",
-          "Official site shows stale 2025 event content."
+          "Official site shows stale 2025 event content.",
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Stubborn Seed",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Contemporary · The Strip (Resorts World)",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Contemporary · The Strip (Resorts World) · Resort World Las Vegas, 3000 S. Las Vegas Blvd., Las Vegas, NV 89109 (The Strip)",
+        "hours": "Mon–Thu 5:00 PM–12:00 AM; Fri–Sat 5:00 PM–1:00 AM; Sun 5:00 PM–12:00 AM (official MICHELIN Guide page)",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://www.rwlasvegas.com/restaurant/stubborn-seed/",
         "sources": [
+          "S51",
           "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified"
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       },
       {
         "name": "Wing Lei",
         "distinction": "Recommended",
         "tier": "Recommended",
-        "cuisine_area": "Cantonese · The Strip (Wynn)",
-        "hours": "NOT verified",
-        "price": "",
+        "cuisine_area": "Cantonese · The Strip (Wynn) · Wynn Las Vegas, 3131 Las Vegas Blvd. S., Las Vegas, NV 89109",
+        "hours": "Mon 5:30–9:30 PM; Tue–Wed closed; Thu 5:30–9:30 PM; Fri–Sat 5:30–10:00 PM; Sun 5:30–9:30 PM (official MICHELIN Guide page)",
+        "price": "$$$$",
         "cost": "",
         "social": "",
         "url": "https://www.wynnlasvegas.com/dining/fine-dining/wing-lei",
         "sources": [
-          "S1",
-          "S30"
+          "S52",
+          "S1"
         ],
-        "status": "Unverified",
+        "status": "Verified",
         "flags": [
-          "Official link from S1 not fetched",
-          "Hours, cost, social not verified"
+          "Exact cost not verified",
+          "Social links not verified"
         ]
       }
     ],

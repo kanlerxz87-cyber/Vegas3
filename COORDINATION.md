@@ -88,7 +88,26 @@ Full list with types on the site's Sources page: `pages/sources.html`.
 
 ---
 
-## Session arena-7dd5ad60: integration record (2026-11-26)
+## Session arena-fe7de712 (branch `arena/fe7de712-vegas3`)
+
+Added 2026-11-27. Branch is fixed to `arena/fe7de712-vegas3` (brief's `session-<id>/<task>` naming difference logged previously as REPO-05).
+
+## Task board (this session)
+
+| Task | Status | Owner session | File scope | Notes |
+|---|---|---|---|---|
+| T8 Michelin list verification vs official Michelin directory | done | arena-fe7de712 | `data/site.json` (restaurants price/distinction columns) | 24/24 verified against guide.michelin.com Las Vegas directory (accessed 2026-11-26): 1 Two-Star, 3 One-Star, 3 Bib Gourmand, 17 Selected/Recommended. Matches S1 tier counts. Michelin price symbols ($–$$$$) recorded for all 24 from the primary directory. |
+| T9 Venue hours research | done | arena-fe7de712 | `data/site.json` (restaurants hours) | 21 of 24 rows have day-by-day hours from official pages (20 from the official MICHELIN Guide venue pages, 1 from venue sites). Esther's Kitchen: no hours published anywhere checked — left blank and flagged. |
+| T10 Hotel rates & booking timing | done | arena-fe7de712 | `data/site.json` (hotels), `pages/trip-dates.html` | Official hotel pages checked (Cosmopolitan, Venetian). No dated, bookable 2027 rate is rendered in static HTML; all 7-night totals left blank and flagged (not inferred). Cheapest booking time not determinable from official sources — flagged; official discount rules (e.g. Caesars up to 30% off 30+ days out) are cited. |
+| T11 Transit ≤1 hr check | done | arena-fe7de712 | `data/site.json` (hotels.transit), `pages/questions.html` | Las Vegas has no subway (RTC bus service only; monorail along the Strip). No point-to-point bus travel time verified — column blank and flagged; RTC trip planner (rtcsnv.com/tripplanner/) cited as the resolution path. Red Rock has no public transit (BLM). |
+| T12 Social links | done | arena-fe7de712 | `data/site.json` (restaurants.social, activities.social) | 2 verified: Kabuto Instagram post (official site kabutolv.com), SoulBelly BBQ Instagram account (official site soulbellybbq.com). Remaining 22 restaurants and all activities left blank and flagged — no handles verified. |
+| T13 Rebuild + verify + publish | done | arena-fe7de712 | `pages/*`, `assets/*`, `scripts/*`, root `index.html` stats | build_site.py regenerated all 11 pages + assets/style.css; verify_site.py → VERIFY OK (38 table rows, 53 sources, tiers 4/3/17, all internal links resolve, all external links https). Root dashboard stat updated to 21 of 24 hours verified. |
+| T14 PR, merge, Pages check, record | in progress | arena-fe7de712 | `COORDINATION.md` | PR arena/fe7de712-vegas3 → main; merge; confirm GitHub Pages deploy; record PR link and merge result here. |
+
+## Verification performed this session (so far)
+
+- Official MICHELIN Guide directory (primary): https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurants — 24 Las Vegas restaurants with distinctions and price symbols, all read and cross-checked against site.json (no conflicts found on distinction; price column was empty for most rows and is now filled from this primary source).
+- LVCVA (S1): https://www.visitlasvegas.com/michelin-guide-restaurants/ — same 24 names, areas and cuisines; "2026 MICHELIN Guide Southwest · Now live"; four stars confirmed (Joël Robuchon Two Stars; L'Atelier, Guy Savoy, é by José Andrés One Star); Bib Gourmand: China Poblano, Esther's Kitchen, Yen Viet Kitchen.
 
 **Task status.** Repo review and Michelin, hotel, activity, date, Q&A and flagged data were built in this session on `arena/7dd5ad60-vegas3`. Two other sessions also built a planner on `main` (arena-84047ba4 and arena-b9d64425). To avoid two competing sites, this session adopted the `main` site (`data/site.json` + `pages/`) as the single source of truth and ported in the verified facts it lacked. Its duplicate `docs/` tree and `data/*.json` files were not kept.
 
