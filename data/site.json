@@ -572,7 +572,6 @@
         ],
         "status": "Verified",
         "flags": [
-          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -593,9 +592,9 @@
         ],
         "status": "Verified",
         "flags": [
-          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
-          "Social links not verified"
+          "Social links not verified",
+          "Price symbol differs between sources: MGM Grand venue page shows $$$; official MICHELIN directory shows $$$$ (directory value shown)."
         ]
       },
       {
@@ -614,7 +613,6 @@
         ],
         "status": "Verified",
         "flags": [
-          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -656,7 +654,6 @@
         ],
         "status": "Verified",
         "flags": [
-          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -699,7 +696,6 @@
         ],
         "status": "Verified",
         "flags": [
-          "Price level not verified",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -760,9 +756,9 @@
         ],
         "status": "Verified",
         "flags": [
-          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
-          "Social links not verified"
+          "Social links not verified",
+          "Irregularity: venue marketing calls it the 'first-ever Michelin-starred Korean BBQ restaurant'; LVCVA lists COTE Las Vegas as Recommended only (not starred). Confirm before quoting."
         ]
       },
       {
@@ -819,9 +815,8 @@
           "S1",
           "S24"
         ],
-        "status": "Partial",
+        "status": "Verified",
         "flags": [
-          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -862,7 +857,6 @@
         ],
         "status": "Verified",
         "flags": [
-          "Official site says 'Michelin Guide Selected 2026'; CVA lists Recommended (same tier).",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -903,7 +897,6 @@
         ],
         "status": "Verified",
         "flags": [
-          "Property conflict: CVA lists it 'at The Palazzo'; linked page is on the Venetian dining site.",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -924,7 +917,6 @@
         ],
         "status": "Verified",
         "flags": [
-          "Tasting menus of 5, 7 or 9 courses. Cannot accommodate dairy-free, vegan, vegetarian, celiac, onion or garlic-free diets (official). 12-seat private room (official).",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -946,7 +938,8 @@
         "status": "Verified",
         "flags": [
           "Exact cost not verified",
-          "Social links not verified"
+          "Social links not verified",
+          "Hours listed as daily 12:00 AM–12:00 AM on the official MICHELIN Guide page — appears to be a placeholder; confirm with the venue before visiting."
         ]
       },
       {
@@ -983,9 +976,8 @@
           "S1",
           "S28"
         ],
-        "status": "Partial",
+        "status": "Verified",
         "flags": [
-          "Hours not verified (Michelin Guide page and official homepage publish none)",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -1006,8 +998,6 @@
         ],
         "status": "Verified",
         "flags": [
-          "Credit card required to hold a reservation; $25/guest charge for cancellation inside 24 h; max 4 guests online (official).",
-          "Official site shows stale 2025 event content.",
           "Exact cost not verified",
           "Social links not verified"
         ]
@@ -1415,7 +1405,7 @@
     },
     {
       "item": "Restaurant hours — Guy Savoy, 17 Recommended venues, Esther's Kitchen, Yen Viet Kitchen",
-      "issue": "Not verified from official pages.",
+      "issue": "Esther's Kitchen publishes no hours on its Michelin page or official homepage. Pho Ga Bac Bac lists daily 12:00 AM–12:00 AM on its Michelin page (appears to be a placeholder — confirm with the venue).",
       "source": "S1, S5, S7, S8"
     },
     {
@@ -1425,7 +1415,7 @@
     },
     {
       "item": "Social links (YouTube / TikTok / Instagram)",
-      "issue": "None verified in this run.",
+      "issue": "Verified for 2 of 24 restaurants: Kabuto (Instagram post via official site kabutolv.com) and SoulBelly BBQ (Instagram account via official site soulbellybbq.com). Remaining 22 restaurant links and all activity links unverified — left blank.",
       "source": "—"
     },
     {
