@@ -97,12 +97,12 @@ Added 2026-11-27. Branch is fixed to `arena/fe7de712-vegas3` (brief's `session-<
 | Task | Status | Owner session | File scope | Notes |
 |---|---|---|---|---|
 | T8 Michelin list verification vs official Michelin directory | done | arena-fe7de712 | `data/site.json` (restaurants price/distinction columns) | 24/24 verified against guide.michelin.com Las Vegas directory (accessed 2026-11-26): 1 Two-Star, 3 One-Star, 3 Bib Gourmand, 17 Selected/Recommended. Matches S1 tier counts. Michelin price symbols ($–$$$$) recorded for all 24 from the primary directory. |
-| T9 Venue hours research | in progress | arena-fe7de712 | `data/site.json` (restaurants hours) | Fetching individual Michelin/venue official pages for day-by-day hours |
-| T10 Hotel rates & booking timing | in progress | arena-fe7de712 | `data/site.json` (hotels), `pages/trip-dates.html` | Checking official hotel pages for Feb 15–22 / Feb 15–18, 2027 rates and cheapest booking time |
-| T11 Transit ≤1 hr check | unclaimed | arena-fe7de712 | `data/site.json` (hotels.transit) | RTC trip planner per hotel–venue pair |
-| T12 Social links | unclaimed | arena-fe7de712 | `data/site.json` (restaurants.social, activities.social) | Official site footers / platform search |
-| T13 Rebuild + verify + publish | unclaimed | arena-fe7de712 | `pages/*`, `assets/*`, `scripts/*` | build_site.py + verify_site.py before PR |
-| T14 PR, merge, Pages check, record | unclaimed | arena-fe7de712 | `COORDINATION.md` | PR to main, merge, confirm GitHub Pages, record result |
+| T9 Venue hours research | done | arena-fe7de712 | `data/site.json` (restaurants hours) | 21 of 24 rows have day-by-day hours from official pages (20 from the official MICHELIN Guide venue pages, 1 from venue sites). Esther's Kitchen: no hours published anywhere checked — left blank and flagged. |
+| T10 Hotel rates & booking timing | done | arena-fe7de712 | `data/site.json` (hotels), `pages/trip-dates.html` | Official hotel pages checked (Cosmopolitan, Venetian). No dated, bookable 2027 rate is rendered in static HTML; all 7-night totals left blank and flagged (not inferred). Cheapest booking time not determinable from official sources — flagged; official discount rules (e.g. Caesars up to 30% off 30+ days out) are cited. |
+| T11 Transit ≤1 hr check | done | arena-fe7de712 | `data/site.json` (hotels.transit), `pages/questions.html` | Las Vegas has no subway (RTC bus service only; monorail along the Strip). No point-to-point bus travel time verified — column blank and flagged; RTC trip planner (rtcsnv.com/tripplanner/) cited as the resolution path. Red Rock has no public transit (BLM). |
+| T12 Social links | done | arena-fe7de712 | `data/site.json` (restaurants.social, activities.social) | 2 verified: Kabuto Instagram post (official site kabutolv.com), SoulBelly BBQ Instagram account (official site soulbellybbq.com). Remaining 22 restaurants and all activities left blank and flagged — no handles verified. |
+| T13 Rebuild + verify + publish | done | arena-fe7de712 | `pages/*`, `assets/*`, `scripts/*`, root `index.html` stats | build_site.py regenerated all 11 pages + assets/style.css; verify_site.py → VERIFY OK (38 table rows, 53 sources, tiers 4/3/17, all internal links resolve, all external links https). Root dashboard stat updated to 21 of 24 hours verified. |
+| T14 PR, merge, Pages check, record | in progress | arena-fe7de712 | `COORDINATION.md` | PR arena/fe7de712-vegas3 → main; merge; confirm GitHub Pages deploy; record PR link and merge result here. |
 
 ## Verification performed this session (so far)
 
