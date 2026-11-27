@@ -88,7 +88,26 @@ Full list with types on the site's Sources page: `pages/sources.html`.
 
 ---
 
-## Session arena-7dd5ad60: integration record (2026-11-26)
+## Session arena-fe7de712 (branch `arena/fe7de712-vegas3`)
+
+Added 2026-11-27. Branch is fixed to `arena/fe7de712-vegas3` (brief's `session-<id>/<task>` naming difference logged previously as REPO-05).
+
+## Task board (this session)
+
+| Task | Status | Owner session | File scope | Notes |
+|---|---|---|---|---|
+| T8 Michelin list verification vs official Michelin directory | done | arena-fe7de712 | `data/site.json` (restaurants price/distinction columns) | 24/24 verified against guide.michelin.com Las Vegas directory (accessed 2026-11-26): 1 Two-Star, 3 One-Star, 3 Bib Gourmand, 17 Selected/Recommended. Matches S1 tier counts. Michelin price symbols ($–$$$$) recorded for all 24 from the primary directory. |
+| T9 Venue hours research | in progress | arena-fe7de712 | `data/site.json` (restaurants hours) | Fetching individual Michelin/venue official pages for day-by-day hours |
+| T10 Hotel rates & booking timing | in progress | arena-fe7de712 | `data/site.json` (hotels), `pages/trip-dates.html` | Checking official hotel pages for Feb 15–22 / Feb 15–18, 2027 rates and cheapest booking time |
+| T11 Transit ≤1 hr check | unclaimed | arena-fe7de712 | `data/site.json` (hotels.transit) | RTC trip planner per hotel–venue pair |
+| T12 Social links | unclaimed | arena-fe7de712 | `data/site.json` (restaurants.social, activities.social) | Official site footers / platform search |
+| T13 Rebuild + verify + publish | unclaimed | arena-fe7de712 | `pages/*`, `assets/*`, `scripts/*` | build_site.py + verify_site.py before PR |
+| T14 PR, merge, Pages check, record | unclaimed | arena-fe7de712 | `COORDINATION.md` | PR to main, merge, confirm GitHub Pages, record result |
+
+## Verification performed this session (so far)
+
+- Official MICHELIN Guide directory (primary): https://guide.michelin.com/us/en/nevada/las-vegas_2935077/restaurants — 24 Las Vegas restaurants with distinctions and price symbols, all read and cross-checked against site.json (no conflicts found on distinction; price column was empty for most rows and is now filled from this primary source).
+- LVCVA (S1): https://www.visitlasvegas.com/michelin-guide-restaurants/ — same 24 names, areas and cuisines; "2026 MICHELIN Guide Southwest · Now live"; four stars confirmed (Joël Robuchon Two Stars; L'Atelier, Guy Savoy, é by José Andrés One Star); Bib Gourmand: China Poblano, Esther's Kitchen, Yen Viet Kitchen.
 
 **Task status.** Repo review and Michelin, hotel, activity, date, Q&A and flagged data were built in this session on `arena/7dd5ad60-vegas3`. Two other sessions also built a planner on `main` (arena-84047ba4 and arena-b9d64425). To avoid two competing sites, this session adopted the `main` site (`data/site.json` + `pages/`) as the single source of truth and ported in the verified facts it lacked. Its duplicate `docs/` tree and `data/*.json` files were not kept.
 
